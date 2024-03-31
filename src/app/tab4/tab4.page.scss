@@ -1,0 +1,36 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px; /* Ajusta según sea necesario */
+  }
+
+.button-container ion-button {
+  margin-bottom: 10px;
+  flex: 1;
+  align-self: center; 
+}
+
+.header-content {
+    display: grid;
+    grid-template-columns: auto 100px; /* Primer columna para el título, segunda columna para la imagen */
+    align-items: center; /* Centra verticalmente los elementos */
+  }
+  
+  .header-image {
+    max-width: 100%; /* Para hacer la imagen responsive */
+    height: auto; /* Para mantener la proporción de la imagen */
+  }
+
+.button1 {
+    --background: #d83e96;
+}
+
+.button2 {
+    --background: #FAE575
+}
+
+.button3 {
+    --background: #4f9ced;
+}
