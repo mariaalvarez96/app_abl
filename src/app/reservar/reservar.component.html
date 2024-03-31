@@ -33,16 +33,5 @@
     [(ngModel)]="fechaSeleccionada"
     locale="es-ES"
   ></ion-datetime>
-
-  <!-- Botón para añadir alumno -->
-  <ion-button expand="block">Añadir Alumno</ion-button>
-  <!-- Lista de alumnos -->
-  <ion-list *ngFor="let alumno of alumnos; let i = index">
-    <ion-item>
-      <ion-label position="floating">Nombre del Alumno {{ i + 1 }}</ion-label>
-      <ion-input type="text" [(ngModel)]="alumnos[i]"></ion-input>
-    </ion-item>
-  </ion-list>
-  <!-- Botón para guardar -->
   <ion-button expand="block">Guardar</ion-button>
 </ion-content>
