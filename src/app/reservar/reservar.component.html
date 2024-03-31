@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tabs.module"></ion-back-button>
+    </ion-buttons>
+    <ion-title> Reservar Clase </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Nombre del Alumno</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Clase</ion-label>
+    <ion-select placeholder="Selecciona una clase">
+      <ion-select-option value="musica">Música</ion-select-option>
+      <ion-select-option value="gestion-emocional"
+        >Gestión emocional</ion-select-option
+      >
+      <ion-select-option value="horario-regulador"
+        >Horario regulador</ion-select-option
+      >
+      <ion-select-option value="ingles1">Inglés Oral</ion-select-option>
+      <ion-select-option value="ingles2">Inglés Escrito</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-datetime
+    display-format="DD/MM/YYYY"
+    [(ngModel)]="fechaSeleccionada"
+    locale="es-ES"
+  ></ion-datetime>
+
+  <!-- Botón para añadir alumno -->
+  <ion-button expand="block">Añadir Alumno</ion-button>
+  <!-- Lista de alumnos -->
+  <ion-list *ngFor="let alumno of alumnos; let i = index">
+    <ion-item>
+      <ion-label position="floating">Nombre del Alumno {{ i + 1 }}</ion-label>
+      <ion-input type="text" [(ngModel)]="alumnos[i]"></ion-input>
+    </ion-item>
+  </ion-list>
+  <!-- Botón para guardar -->
+  <ion-button expand="block">Guardar</ion-button>
+</ion-content>
