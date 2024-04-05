@@ -9,4 +9,10 @@ export class Tab3Page {
 
   constructor() {}
 
+  password: string = '';
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 }

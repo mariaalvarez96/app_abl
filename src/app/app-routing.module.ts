@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ReservarComponent } from './reservar/reservar.component';
+import { LoginComponent } from './login/login.component';
+
 
 const routes: Routes = [
   {
@@ -10,6 +12,10 @@ const routes: Routes = [
   {
     path: 'app-reservar',
     component: ReservarComponent
+  },
+  {
+    path: 'app-login',
+    component: LoginComponent
   }
 ];
 @NgModule({

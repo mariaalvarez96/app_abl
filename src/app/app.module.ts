@@ -7,12 +7,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReservarComponent } from './reservar/reservar.component';
+import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
-  declarations: [AppComponent, ReservarComponent],
+  declarations: [AppComponent, ReservarComponent, LoginComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

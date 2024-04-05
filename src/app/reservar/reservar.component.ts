@@ -18,5 +18,6 @@ export class ReservarComponent  implements OnInit {
 
   guardar() {
     //lógica para guardar la reserva
+  }
     
 }

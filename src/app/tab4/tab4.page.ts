@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Platform } from '@ionic/angular';
+//import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-tab4',
   templateUrl: 'tab4.page.html',
@@ -7,7 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class Tab4Page {
+  
+  constructor(private platform: Platform) {}
 
-  constructor() {}
+  abrirWhatsApp() {
+    let whatsappNumber = "622156052";
 
+
+  }
 }
