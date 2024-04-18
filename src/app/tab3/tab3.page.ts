@@ -9,6 +9,7 @@ export class Tab3Page {
 
   constructor() {}
 
+  email: string = '';
   password: string = '';
   showPassword: boolean = false;
 
