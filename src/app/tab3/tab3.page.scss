@@ -3,3 +3,12 @@ ion-icon[name="eye"], ion-icon[name="eye-off"] {
     color: #777;
     cursor: pointer;
   }
+
+  contenedorFormulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10%; 
+  }
