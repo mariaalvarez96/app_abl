@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { ReservarComponent } from './reservar/reservar.component';
-import { LoginComponent } from './login/login.component';
+import { BookingComponent } from './booking/booking.component';
+import { SignUpComponent } from './signup/signup.component';
+import { HomePage } from './home/home.page';
 
 
 const routes: Routes = [
@@ -10,12 +11,16 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'app-reservar',
-    component: ReservarComponent
+    path: 'app-booking',
+    component: BookingComponent
   },
   {
-    path: 'app-login',
-    component: LoginComponent
+    path: 'app-signup',
+    component: SignUpComponent
+  },
+  {
+    path: 'app-home',
+    component: HomePage
   }
 ];
 @NgModule({

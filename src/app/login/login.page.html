@@ -1,0 +1,47 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-grid [fixed]="true">
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="Email">Correo Electrónico</ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+    </ion-col>    
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="Password">Contraseña</ion-label>
+        <ion-input type="{{ showPassword ? 'text' : 'password' }}"></ion-input>
+        <ion-icon name="{{ showPassword ? 'eye' : 'eye-off' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+      </ion-item>
+    </ion-col>    
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block">Iniciar Sesión</ion-button>
+    </ion-col>    
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" fill="clear" routerLink="/app-signup">¿No eres usuario? Crear cuenta</ion-button>
+    </ion-col>    
+  </ion-row>
+</ion-grid>
+    
+
+    
+
+    
+    
+
+

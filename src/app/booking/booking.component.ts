@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 @Component({
-  selector: 'app-reservar',
-  templateUrl: './reservar.component.html',
-  styleUrls: ['./reservar.component.scss'],
+  selector: 'app-booking',
+  templateUrl: './booking.component.html',
+  styleUrls: ['./booking.component.scss'],
 })
-export class ReservarComponent  implements OnInit {
+export class BookingComponent  implements OnInit {
 
   constructor() { }
 

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-grid [fixed]="true">
+    <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="stacked" aria-label="complete_name"
+              >Nombre y apellidos</ion-label
+            >
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="dni">DNI</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </ion-col>
+  
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="ph_number"
+          >Teléfono</ion-label>
+        <ion-input type="tel"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="Email"
+          >Correo Electrónico</ion-label
+        >
+        <ion-input type="email"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label position="stacked" aria-label="Password"
+          >Contraseña</ion-label
+        >
+        <ion-input type="{{ showPassword ? 'text' : 'password' }}"></ion-input>
+        <ion-icon
+          name="{{ showPassword ? 'eye' : 'eye-off' }}"
+          slot="end"
+          (click)="togglePasswordVisibility()"
+        ></ion-icon>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block">Crear cuenta</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

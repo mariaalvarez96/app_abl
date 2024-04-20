@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="header-content">
+        <ion-title>Bienvenido/a</ion-title>
+        <img src="../../assets/logo.png" alt="Imagen" class="header-image">
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  
+  <div class="button-container">
+    <ion-button expand="block" shape="default" fill="solid" class="button1" routerLink="/app-booking">Reservar clase</ion-button>
+    <ion-button expand="block" shape="default" fill="solid" class="button2">Material clase</ion-button>
+    <ion-button expand="block" shape="default" fill="solid" class="button3">Conócenos</ion-button>
+  </div>
+
+  <ion-grid class="button-container">
+    <ion-row>
+        <ion-button expand="block" shape="default"  href="https://www.instagram.com/ambbonalletra">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </ion-button>
+    </ion-row>
+    <ion-row>
+        <ion-button expand="block" shape="default" href="https://wa.me/622156052?text=Hola!">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </ion-button>
+    </ion-row>
+    <ion-row>
+        <ion-button expand="block" shape="default"  href="https://www.facebook.com/profile.php?id=100054462251090">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>
