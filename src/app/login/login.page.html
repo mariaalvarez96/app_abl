@@ -13,7 +13,7 @@
     <ion-col>
       <ion-item>
         <ion-label position="stacked" aria-label="Email">Correo Electrónico</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
       </ion-item>
     </ion-col>    
   </ion-row>
@@ -21,14 +21,14 @@
     <ion-col>
       <ion-item>
         <ion-label position="stacked" aria-label="Password">Contraseña</ion-label>
-        <ion-input type="{{ showPassword ? 'text' : 'password' }}"></ion-input>
+        <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password"></ion-input>
         <ion-icon name="{{ showPassword ? 'eye' : 'eye-off' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
       </ion-item>
     </ion-col>    
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button expand="block">Iniciar Sesión</ion-button>
+      <ion-button expand="block" (click)="login(email, password)">Iniciar Sesión</ion-button>
     </ion-col>    
   </ion-row>
   <ion-row>

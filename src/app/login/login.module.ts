@@ -16,6 +16,9 @@ import { LoginPageRoutingModule } from './login-routing.module';
     ExploreContainerComponentModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage],
+  exports: [
+    LoginPage 
+  ]
 })
 export class LoginPageModule {}
