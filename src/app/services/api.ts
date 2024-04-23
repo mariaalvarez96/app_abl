@@ -11,31 +11,15 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    public async createUser(dni:string, username: string,  email:string,tlf: number, password: string) {
-        try {
-            const response = await fetch(`${this.BASE_URL}/users/new`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    dni,
-                    username,
-                    email,
-                    tlf,                   
-                    password
-                })
-            });
-
-            if (!response.ok) {
-                console.log("esto está mal")
-                throw new Error('Error al crear usuario');
-            }
-            return response.json(); // Devolver el JSON de la respuesta (si hay alguno)
-        } catch (error) {
-            console.error('Error al crear usuario:', error);
-            throw error; 
-        }
+    public createUser(dni:string, name: string,  email:string,tlf: number, password: string) {
+        return this.http.post(`${this.BASE_URL}/users/new`, {
+            dni,
+            name,
+            email,
+            tlf,                   
+            password
+        })
+              
     }
 
     public loginUser(email: string, password: string): Observable<any> {

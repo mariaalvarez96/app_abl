@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api';
 import { Router } from '@angular/router';
+import { CurrentUserManager } from '../services/currentUserManager';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginPage {
 
-  constructor(private Api: ApiService, private router: Router) {
-    
-  }
+  constructor(
+    private Api: ApiService,
+    private router: Router,
+    private currentUserManager: CurrentUserManager
+  ) {}
 
   email: string = '';
   password: string = '';
@@ -24,12 +27,7 @@ export class LoginPage {
   login(email: string, password: string) {
     this.Api.loginUser(email, password).subscribe(
       (response: any) => {
-        // Verificar si el inicio de sesión fue exitoso
-        console.log(response, response.success);
-        // Guardar el usuario en localStorage
-        localStorage.setItem('currentUser', JSON.stringify(response));
-        // Redirigir a la página de inicio o a donde necesites
-        // Por ejemplo:
+        this.currentUserManager.saveCurrentUser(response);
         this.router.navigate(['/tabs/home']);
       },
       (error) => {
