@@ -8,7 +8,7 @@ export class User {
     constructor(userObj: any) {
         this.name = userObj.name;
         this.email = userObj.email;
-        this.phone = userObj.tlf;
+        this.phone = userObj.phone;
         this.password = userObj.password;
         this.dni = userObj.dni;
     }

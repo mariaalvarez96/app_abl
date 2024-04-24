@@ -42,7 +42,7 @@
       <ion-item>
         <ion-label position="stacked" aria-label="phone">Teléfono</ion-label>
         <ion-input
-          type="text"
+          type="tel"
           [(ngModel)]="user.phone"
           [clearInput]="true"
           [disabled]="!edition"
@@ -71,16 +71,15 @@
             >Editar datos</ion-button
           >
         </ng-container>
-
-        <ion-button id="open-modal" expand="block"
-          >Cambiar contraseña</ion-button
-        >
-
         <ng-container *ngIf="edition">
           <ion-button (click)="saveData()" expand="block"
             >Guardar datos</ion-button
           >
         </ng-container>
+
+        <ion-button id="open-modal" expand="block"
+          >Cambiar contraseña</ion-button
+        >       
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -91,48 +90,39 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Change Password</ion-title>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Cambiar contraseña</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <ion-item class="ion-padding">
           <ion-input
-            placeholder="Introduzca la nueva contraseña"
             type="password"
             fill="solid"
             helperText="Enter a valid password"
             [clearInput]="true"
             [(ngModel)]="newPassword"
-            label="Password" labelPlacement="floating"
+            label="Introduzca la nueva contraseña" labelPlacement="floating"
             password
           ></ion-input>
         </ion-item>
         <ion-item class="ion-padding">
           <ion-input
-            placeholder="Repita la nueva contraseña"
             type="password"
             fill="solid"
             [clearInput]="true"
             [(ngModel)]="repeatPassword"
             (ionInput)="verifyPasswords()"
             [ngClass]="{'ion-invalid': !areTheyEqual}"
-            label="Password" labelPlacement="floating"
+            label="Repita la nueva contraseña" labelPlacement="floating"
             helperText="Enter a valid password"
-            errorText="TAMARE"
             password
           ></ion-input>
         </ion-item>
-
-        <!-- <ion-input
-  type="email"
-  fill="solid"
-  label="Email"
-  labelPlacement="floating"
-  helperText="Enter a valid email"
-  errorText="Invalid email"
-  ngModel
-  email
-></ion-input> -->
+        <ion-text color="danger" *ngIf="!areTheyEqual">Las contraseñas no coinciden</ion-text>
+        <ion-button (click)="savePassword()" [disabled]="!areTheyEqual" class="ion-padding">Guardar nueva contraseña</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>

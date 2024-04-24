@@ -11,12 +11,12 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    public createUser(dni:string, name: string,  email:string,tlf: number, password: string) {
+    public createUser(dni:string, name: string,  email:string, phone: number, password: string) {
         return this.http.post(`${this.BASE_URL}/users/new`, {
             dni,
             name,
             email,
-            tlf,                   
+            phone,                   
             password
         })
               
@@ -28,4 +28,26 @@ export class ApiService {
             password
         });
     }
+
+    public updatePassword(dni:string, name: string,  email:string, phone: number, password: string) {
+        return this.http.post(`${this.BASE_URL}/users/updatePassword`, {
+            dni,
+            name,
+            email,
+            phone,
+            password
+        });
+    }
+
+    public updateUserData(dni:string, name: string,  email:string, phone: number, password: string) {
+        return this.http.post(`${this.BASE_URL}/users/updateUserData`, {
+            dni,
+            name,
+            email,
+            phone,
+            password
+        });
+    }
+
+    
 }

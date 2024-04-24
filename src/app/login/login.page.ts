@@ -29,9 +29,6 @@ export class LoginPage {
       (response: any) => {
         this.currentUserManager.saveCurrentUser(response);
         this.router.navigate(['/tabs/home']);
-      },
-      (error) => {
-        console.error('Error al iniciar sesión:', error);
       }
     );
   }
