@@ -3,6 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BookingComponent } from './booking/booking.component';
 import { SignUpComponent } from './signup/signup.component';
 import { HomePage } from './home/home.page';
+import { MybookingsPage } from './mybookings/mybookings.page';
+import { MysuppliesPage } from './mysupplies/mysupplies.page';
 
 
 const routes: Routes = [
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'app-home',
     component: HomePage
+  },
+  {
+    path: 'app-mybookings',
+    component: MybookingsPage
+  },
+  {
+    path: 'app-mysupplies',
+    component: MysuppliesPage
   },
 ];
 @NgModule({
