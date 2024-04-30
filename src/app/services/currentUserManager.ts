@@ -10,7 +10,7 @@ export class CurrentUserManager {
         localStorage.setItem('currentUser', JSON.stringify(user));
     }
 
-    getCurrentUser(): User|null {
+    getCurrentUser(): User|any {
         if (!this.hasUser()) {
             return null;
         }

@@ -49,5 +49,8 @@ export class ApiService {
         });
     }
 
+    public getBookingsByUser(dni: string): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/booking/${dni}`);
+    }
     
 }

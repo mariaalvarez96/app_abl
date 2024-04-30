@@ -1,17 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Mis reservas
-    </ion-title>
+    <ion-title> Mis reservas </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngFor="let reserva of reservas">
+    <ion-card-header>
+      <ion-card-title>{{ reserva.studentName }}</ion-card-title>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card-content> {{ reserva.idClass }} </ion-card-content>
+    <ion-item>
+      <ion-button
+        fill="outline"
+        color="danger"
+        slot="end"
+        id="present-alert"
+      >
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-alert
+      trigger="present-alert"
+      header="¿Desea borrar esta reserva?"
+      [buttons]="alertButtons"
+      (didDismiss)="setResult($event)"
+    ></ion-alert>
+  </ion-card>
 </ion-content>

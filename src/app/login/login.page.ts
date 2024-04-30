@@ -19,6 +19,7 @@ export class LoginPage {
   email: string = '';
   password: string = '';
   showPassword: boolean = false;
+  errorMessage: boolean = false;
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -29,6 +30,9 @@ export class LoginPage {
       (response: any) => {
         this.currentUserManager.saveCurrentUser(response);
         this.router.navigate(['/tabs/home']);
+      },
+      (error) => {
+        this.errorMessage = true;
       }
     );
   }
