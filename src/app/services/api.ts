@@ -49,14 +49,15 @@ export class ApiService {
         });
     }
 
-<<<<<<< HEAD
-    public getBookingsByUser(dni: string): Observable<any> {
+    public getBookingsByUser(dni: any): Observable<any> {
         return this.http.get(`${this.BASE_URL}/booking/${dni}`);
     }
     
-=======
-    public getBookingsByUser(dni: string | undefined): Observable<any> {
-        return this.http.get(`${this.BASE_URL}/booking/${dni}`);
+    public deleteBookingById(id: any): Observable<any> {
+        return this.http.delete(`${this.BASE_URL}/booking/${id}`);
     }
->>>>>>> 792fcfc42645651273ed1b35b084100b5a9007d7
+
+    public getAllClasses(): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/classes/list`);
+    }
 }

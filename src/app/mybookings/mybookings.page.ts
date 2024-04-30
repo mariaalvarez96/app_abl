@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api';
 import { CurrentUserManager } from '../services/currentUserManager';
-import { IonModal } from '@ionic/angular';
-
-interface Reserva {
-  studentName: string;
-  idClass: string;
-} 
-=======
-import { Component } from '@angular/core';
-import { ApiService } from '../services/api';
-import { CurrentUserManager } from '../services/currentUserManager';
->>>>>>> 792fcfc42645651273ed1b35b084100b5a9007d7
+import { AlertController, IonModal } from '@ionic/angular';
+import { Booking } from '../entity/booking';
+import { Lesson } from '../entity/lesson';
 
 @Component({
   selector: 'app-mybookings',
@@ -22,24 +13,34 @@ import { CurrentUserManager } from '../services/currentUserManager';
 
 export class MybookingsPage {
 
-<<<<<<< HEAD
   @ViewChild(IonModal) modal: IonModal | undefined;
 
-  reservas: Reserva[] = [];
+  bookings: Booking[] = [];
+  classes: Lesson[] = [];
 
-  constructor(private api: ApiService, private currentUser: CurrentUserManager) {}
+  constructor(
+    private api: ApiService,
+    private currentUser: CurrentUserManager,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
+    this.api.getAllClasses().subscribe(
+      (res: any) => {
+        this.classes = res.map((element: any) => {
+          return new Lesson(element);
+        })
+      }   
+    )
+
     this.api.getBookingsByUser(this.currentUser.getCurrentUser()?.dni).subscribe(
       (response: any) => {
-        this.reservas = response.map((element: any) => {
-          return {
-            idClass: element.idclass,
-            studentName: element.studentName,         
-          };
+        this.bookings = response.map((element: any) => {
+          return new Booking(element);
         });
       }
     );
+    
   }
 
   onWillDismiss(event: Event) {
@@ -50,51 +51,40 @@ export class MybookingsPage {
     this.modal?.dismiss(null, 'cancel');
   }
 
-  deleteBooking(reserva: Reserva) {
-    throw new Error('Method not implemented.');
+  deleteBooking(id: string) {
+    this.api.deleteBookingById(id).subscribe(
+      (response: any) => {
+        let indexToRemove = this.bookings.findIndex(item => item.id === id);
+        if (indexToRemove !== -1) {
+          this.bookings.splice(indexToRemove, 1);
+        }
+      }
+    )
   }
 
-  public alertButtons = [
-    {
-      text: 'No',
-      role: 'cancel',
-      handler: () => {
-        console.log('Alerta canceleda');
-      },
-    },
-    {
-      text: 'Sí',
-      role: 'confirm',
-      handler: () => {
-       
-        console.log('Alert confirmed');
-      },
-    },
-  ];
+  async presentAlert(id: string) {
+    const alert = await this.alertController.create({
+      header: '¿Desea borrar esta reserva?',
+      message: 'No podra recuperar esta reserva.',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alerta canceleda');
+          },
+        },
+        {
+          text: 'Sí',
+          role: 'confirm',
+          handler: () => {
+            this.deleteBooking(id);
+          },
+        },
+      ],
+    });
 
-  setResult(ev:any) {
-    console.log(`Dismissed with role: ${ev.detail.role}`);
-=======
-  clase: string = '';
-  student: string = '';
-
-
-  constructor(private api: ApiService, private currentUserManager: CurrentUserManager) {}
-
-  ngOnInit(){
-    let dni = this.currentUserManager.getCurrentUser()?.dni;
-    if (dni !== null) {
-      this.api.getBookingsByUser(dni).subscribe((response: any) => {
-        console.log(response)
-        response.forEach((element: { idClass: string; studentName: string; }) => {
-          this.clase = element.idClass;
-          this.student = response.studentName;
-        });     
-    })
-    } else {
-      alert('Este usuario no tiene reservas.')
-    }                  
->>>>>>> 792fcfc42645651273ed1b35b084100b5a9007d7
+    await alert.present();
   }
 
 }
