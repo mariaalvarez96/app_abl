@@ -12,7 +12,7 @@ import { ApiService } from '../services/api';
 })
 export class ProfilePage implements OnInit {
 
-  constructor(private currentUserManager: CurrentUserManager, private router: Router, private Api: ApiService) {
+  constructor(private currentUserManager: CurrentUserManager, private router: Router, private api: ApiService) {
     this.user = this.currentUserManager.getCurrentUser() || new User({ name: '', email: '' });
   }
 
@@ -35,7 +35,7 @@ export class ProfilePage implements OnInit {
   }
 
   saveData() {
-    this.Api.updateUserData(this.user.dni, this.user.name, this.user.email, this.user.phone, this.user.password).subscribe(
+    this.api.updateUserData(this.user.dni, this.user.name, this.user.email, this.user.phone, this.user.password).subscribe(
       (response: any) => {
         this.enableEdit();
         this.currentUserManager.saveCurrentUser(response);
@@ -52,7 +52,7 @@ export class ProfilePage implements OnInit {
   }
 
   savePassword() {
-    this.Api.updatePassword(this.user.dni, this.user.name, this.user.email, this.user.phone, this.newPassword).subscribe(
+    this.api.updatePassword(this.user.dni, this.user.name, this.user.email, this.user.phone, this.newPassword).subscribe(
       (response: any) => {
         this.currentUserManager.saveCurrentUser(response);
         this.modal?.dismiss(null, 'cancel');

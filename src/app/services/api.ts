@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Booking } from '../entity/booking';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,10 @@ export class ApiService {
             password
         })
               
+    }
+
+    public saveBooking(booking: any): Observable<any> {
+        return this.http.post(`${this.BASE_URL}/booking/new`, booking);
     }
 
     public loginUser(email: string, password: string): Observable<any> {
@@ -57,7 +62,11 @@ export class ApiService {
         return this.http.delete(`${this.BASE_URL}/booking/${id}`);
     }
 
-    public getAllClasses(): Observable<any> {
-        return this.http.get(`${this.BASE_URL}/classes/list`);
+    public getAllLessons(): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/lessons/list`);
+    }
+
+    public getAllStudents(dni: any): Observable<any> {
+        return this.http.get(`${this.BASE_URL}/students/${dni}`);
     }
 }

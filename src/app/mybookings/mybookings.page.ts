@@ -25,7 +25,7 @@ export class MybookingsPage {
   ) {}
 
   ngOnInit() {
-    this.api.getAllClasses().subscribe(
+    this.api.getAllLessons().subscribe(
       (res: any) => {
         this.classes = res.map((element: any) => {
           return new Lesson(element);

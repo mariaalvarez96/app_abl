@@ -7,11 +7,11 @@
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let booking of bookings">
     <ion-card-header>
-      <ion-card-title>{{ booking.studentName + ' - ' + booking.lesson.name }}</ion-card-title>
+      <ion-card-title>{{ booking.lesson.name + " (" + booking.student.name + ")" }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      {{ booking.lesson.day + ' ' + booking.lesson.time }}
+      {{ booking.date + ' ' + booking.time }}
       <ion-item>
         <ion-button
           fill="outline"

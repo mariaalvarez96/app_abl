@@ -11,23 +11,49 @@
   
   <ion-item>
     <ion-label>Clase</ion-label>
-    <ion-select placeholder="Selecciona una">
-      <ion-select-option></ion-select-option>
+    <ion-select
+     placeholder="Selecciona clase"
+     [(ngModel)]="lessonSelected">
+      <ion-select-option *ngFor="let lesson of lessons" [value]="lesson">
+        {{lesson.name}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
   
   <ion-item>
     <ion-label>Fecha</ion-label>
-    <ion-select placeholder="Selecciona el dia">
-      <ion-select-option></ion-select-option>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"
+        [min]="minDate()"
+        [max]="maxDate()"
+        [dayValues]="dayValues()"
+        [(ngModel)]="daySelected"
+        (ionChange)="dateTimeUpdated($event)"
+        presentation="date" preferWheel="false"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Hora</ion-label>
+    <ion-select placeholder="Hora" [(ngModel)]="timeSelected">
+      <ion-select-option *ngFor="let hour of hours" [value]="hour">
+        {{hour}}
+      </ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Nombre del Alumno</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-label>Alumno</ion-label>
+    <ion-select placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
+      <ion-select-option *ngFor="let student of students" [value]="student">
+        {{student.name}}
+      </ion-select-option>
+    </ion-select>
   </ion-item>
 
-  <ion-button expand="block">Guardar</ion-button>
+  <ion-button expand="block" (click)="saveBooking()">Guardar</ion-button>
 </ion-content>
