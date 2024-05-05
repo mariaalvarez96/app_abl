@@ -4,13 +4,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-grid [fixed]="true">
+<ion-grid [fixed]="true" class="ion-padding">
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-label position="stacked" aria-label="dni"
-          >Documento nacional de identidad</ion-label
-        >
+        <ion-avatar slot="start" style="width: 120px; height: 120px;">
+          <img [src]=" user.avatar ? 'data:image/jpeg;base64,' + user.avatar : 'https://ionicframework.com/docs/img/demos/avatar.svg'"/>
+        </ion-avatar>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display:none;" #fileInput/>
+        <ion-button slod="end" (click)="fileInput.click()">Cambiar imagen</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" aria-label="dni">Documento nacional de identidad</ion-label>
         <ion-input
           type="text"
           [(ngModel)]="user.dni"
@@ -79,7 +84,7 @@
 
         <ion-button id="open-modal" expand="block"
           >Cambiar contraseña</ion-button
-        >       
+        >
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -104,7 +109,8 @@
             helperText="Enter a valid password"
             [clearInput]="true"
             [(ngModel)]="newPassword"
-            label="Introduzca la nueva contraseña" labelPlacement="floating"
+            label="Introduzca la nueva contraseña"
+            labelPlacement="floating"
             password
           ></ion-input>
         </ion-item>
@@ -116,13 +122,21 @@
             [(ngModel)]="repeatPassword"
             (ionInput)="verifyPasswords()"
             [ngClass]="{'ion-invalid': !areTheyEqual}"
-            label="Repita la nueva contraseña" labelPlacement="floating"
+            label="Repita la nueva contraseña"
+            labelPlacement="floating"
             helperText="Enter a valid password"
             password
           ></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="!areTheyEqual">Las contraseñas no coinciden</ion-text>
-        <ion-button (click)="savePassword()" [disabled]="!areTheyEqual" class="ion-padding">Guardar nueva contraseña</ion-button>
+        <ion-text color="danger" *ngIf="!areTheyEqual"
+          >Las contraseñas no coinciden</ion-text
+        >
+        <ion-button
+          (click)="savePassword()"
+          [disabled]="!areTheyEqual"
+          class="ion-padding"
+          >Guardar nueva contraseña</ion-button
+        >
       </ion-content>
     </ng-template>
   </ion-modal>

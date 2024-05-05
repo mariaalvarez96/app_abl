@@ -4,6 +4,7 @@ export class User {
     phone: number;
     password: string;
     dni: string;
+    avatar: ArrayBuffer;
     
     constructor(userObj: any) {
         this.name = userObj.name;
@@ -11,5 +12,6 @@ export class User {
         this.phone = userObj.phone;
         this.password = userObj.password;
         this.dni = userObj.dni;
+        this.avatar = userObj.avatar;
     }
 }

@@ -8,6 +8,9 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 
+import { Directory, Encoding, FilesystemPlugin } from '@capacitor/filesystem';
+import { Plugins, Capacitor} from '@capacitor/core';
+
 @NgModule({
   imports: [
     CommonModule,
