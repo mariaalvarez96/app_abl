@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -7,44 +6,61 @@
     <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
-  
+
 <ion-grid [fixed]="true">
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-label position="stacked" aria-label="Email">Correo Electrónico</ion-label>
-        <ion-input type="email" [(ngModel)]="email" [clearInput]="true"></ion-input>
+        <ion-label position="stacked" aria-label="Email"
+          >Correo Electrónico</ion-label
+        >
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          [clearInput]="true"
+          fill="solid"
+          placeholder="example@dominio.com"
+          [clearInput]="true"
+          errorText="Introduzca un correo electrónico válido"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        ></ion-input>
       </ion-item>
-    </ion-col>    
+    </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
       <ion-item>
-        <ion-label position="stacked" aria-label="Password">Contraseña</ion-label>
-        <ion-input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="password" [clearInput]="true"></ion-input>
-        <ion-icon name="{{ showPassword ? 'eye' : 'eye-off' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+        <ion-label position="stacked" aria-label="Password"
+          >Contraseña</ion-label
+        >
+        <ion-input
+          type="{{ showPassword ? 'text' : 'password' }}"
+          [(ngModel)]="password"
+          [clearInput]="true"
+        ></ion-input>
+        <ion-icon
+          name="{{ showPassword ? 'eye' : 'eye-off' }}"
+          slot="end"
+          (click)="togglePasswordVisibility()"
+        ></ion-icon>
       </ion-item>
-    </ion-col>    
+    </ion-col>
   </ion-row>
   <div *ngIf="errorMessage" class="ion-text-center">
     <ion-label color="danger">Email o contraseña incorrectos</ion-label>
   </div>
   <ion-row>
     <ion-col>
-      <ion-button expand="block" (click)="login(email, password)">Iniciar Sesión</ion-button>
-    </ion-col>    
+      <ion-button expand="block" (click)="login(email, password)"
+        >Iniciar Sesión</ion-button
+      >
+    </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button expand="block" fill="clear" routerLink="/app-signup">¿No eres usuario? Crear cuenta</ion-button>
-    </ion-col>    
+      <ion-button expand="block" fill="clear" routerLink="/app-signup"
+        >¿No eres usuario? Crear cuenta</ion-button
+      >
+    </ion-col>
   </ion-row>
 </ion-grid>
-    
-
-    
-
-    
-    
-
-

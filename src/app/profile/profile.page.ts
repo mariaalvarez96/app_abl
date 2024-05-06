@@ -4,7 +4,7 @@ import { CurrentUserManager } from '../services/currentUserManager';
 import { Router } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { ApiService } from '../services/api';
-import { File } from '@ionic-native/file/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +15,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private currentUserManager: CurrentUserManager,
     private router: Router,
-    private api: ApiService
+    private api: ApiService,
+    private alertController: AlertController
   ) {
     this.user =
       this.currentUserManager.getCurrentUser() ||
@@ -71,6 +72,23 @@ export class ProfilePage implements OnInit {
     reader.readAsDataURL(selectedFile);
   }
 
+  validatePassword(password: string):boolean {
+    const pattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=.?¿!¡]).{6,}$/;
+    if (password.length < 6) {
+      return false;
+    }
+    if (!/[a-zA-Z]/.test(password)) {
+      return false;
+    }
+    if (!/\d/.test(password)) {
+      return false;
+    }
+    if (!/[@#$%^&+=.?¿!¡]/.test(password)) {
+      return false;
+    }
+    return true;
+  }
+
 
   cancel() {
     this.modal?.dismiss(null, 'cancel');
@@ -80,7 +98,16 @@ export class ProfilePage implements OnInit {
     this.areTheyEqual = this.newPassword == this.repeatPassword;
   }
 
-  savePassword() {
+  async savePassword() {
+    if (!this.validatePassword(this.repeatPassword)) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'La contraseña debe tener al menos 6 caracteres, contener letras, números y al menos un carácter especial.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
     this.api
       .updatePassword(
         this.user.dni,

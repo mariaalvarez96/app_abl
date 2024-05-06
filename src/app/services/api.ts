@@ -7,7 +7,7 @@ import { Booking } from '../entity/booking';
   providedIn: 'root',
 })
 export class ApiService {
-  public readonly BASE_URL = 'http://localhost:8003';
+  public readonly BASE_URL = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
