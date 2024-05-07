@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from '../entity/user';
 import { CurrentUserManager } from '../services/currentUserManager';
 import { ApiService } from '../services/api';
@@ -6,7 +6,7 @@ import { Lesson } from '../entity/lesson';
 import { DatetimeChangeEventDetail } from '@ionic/angular';
 import { IonDatetimeCustomEvent } from '@ionic/core';
 import { Student } from '../entity/student';
-import { Booking } from '../entity/booking';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { Booking } from '../entity/booking';
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent {
 
   user: User|null = null;
   lessons: Lesson[] = [];
@@ -27,7 +27,11 @@ export class BookingComponent implements OnInit {
   studentSelected: any;
   timeSelected: any;
 
-  constructor(private currentUserManager: CurrentUserManager,private api: ApiService) {
+  constructor(
+    private currentUserManager: CurrentUserManager,
+    private api: ApiService,
+    private router: Router
+  ) {
     this.user = this.currentUserManager.getCurrentUser();
     this.api.getAllLessons().subscribe(
       (response: any) => {
@@ -40,9 +44,6 @@ export class BookingComponent implements OnInit {
         this.students = response.map((student: any) => new Student(student));
       }
     )
-  }
-
-  ngOnInit() {
   }
 
   minDate() {
@@ -75,7 +76,6 @@ export class BookingComponent implements OnInit {
     let dateString = event.detail.value + "";
     let date = new Date(dateString);
     if (this.lessonSelected && this.lessonSelected.getTimesByDay(date.getDay())) {
-      console.log(this.lessonSelected.getTimesByDay(date.getDay()));
       this.hours = this.lessonSelected.getTimesByDay(date.getDay());
     }
   }
@@ -88,10 +88,9 @@ export class BookingComponent implements OnInit {
       time: this.timeSelected,
       student: {id: this.studentSelected?.id}
     };
-    console.log(booking);
     this.api.saveBooking(booking).subscribe(
       (response: any) => {
-        console.log(response);
+        this.router.navigate(['/tabs/mybookings']);
       }
     );
   }

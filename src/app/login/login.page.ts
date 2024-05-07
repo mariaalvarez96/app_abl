@@ -29,6 +29,8 @@ export class LoginPage {
     this.Api.loginUser(email, password).subscribe(
       (response: any) => {
         this.currentUserManager.saveCurrentUser(response);
+        this.email = '';
+        this.password = '';
         this.router.navigate(['/tabs/home']);
       },
       (error) => {

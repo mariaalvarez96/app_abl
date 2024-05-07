@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
         this.router.navigate(['/tabs/home']);
       },
       async (error) => {
-        console.log(error)
+        console.error(error)
         const alert = await this.alertController.create({
           header: 'Error',
           message: error.error, 

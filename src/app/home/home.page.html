@@ -2,35 +2,95 @@
   <ion-toolbar>
     <ion-title>
       <div class="header-content">
-        <ion-title>Bienvenido/a {{user?.name}}</ion-title>
-        <img src="../../assets/logo.png" alt="Imagen" class="header-image">
+        <ion-title style="font-size: 12px;">Bienvenido/a {{user?.name}}</ion-title>
+        <img
+          src="../../assets/logo_sin_letra.png"
+          alt="Imagen"
+          class="header-image"
+        />
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  
-  <div class="button-container">
-    <ion-button expand="block" shape="default" fill="solid" class="button1" routerLink="/app-booking">Reservar clase</ion-button>
-    <ion-button expand="block" shape="default" fill="solid" class="button2">Material clase</ion-button>
-    <ion-button expand="block" shape="default" fill="solid" class="button3">Conócenos</ion-button>
-  </div>
-
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Importante!</ion-card-title>
+    </ion-card-header>  
+    <ion-card-content>
+      Para reservar cualquier clase o para acceder al material debe estar registrado como usuario.
+    </ion-card-content>
+  </ion-card>
   <ion-grid class="button-container">
-    <ion-row>
-        <ion-button expand="block" shape="default"  href="https://www.instagram.com/ambbonalletra">
-          <ion-icon name="logo-instagram"></ion-icon>
-        </ion-button>
-    </ion-row>
-    <ion-row>
-        <ion-button expand="block" shape="default" href="https://wa.me/622156052?text=Hola!">
-          <ion-icon name="logo-whatsapp"></ion-icon>
-        </ion-button>
-    </ion-row>
-    <ion-row>
-        <ion-button expand="block" shape="default"  href="https://www.facebook.com/profile.php?id=100054462251090">
-          <ion-icon name="logo-facebook"></ion-icon>
-        </ion-button>
-    </ion-row>
+    <ion-col>
+      <ion-row>
+        <ion-button
+          shape="default"
+          fill="solid"
+          class="button1"
+          routerLink="/app-booking"
+          [disabled]="!isUserLogged"
+          >Reservar clase</ion-button
+        >
+      </ion-row>
+      <ion-row>
+        <ion-button
+          shape="default"
+          fill="solid"
+          class="button2"
+          routerLink="/app-supplies"
+          [disabled]="!isUserLogged"
+          >Material estudio</ion-button
+        >
+      </ion-row>
+      <ion-row>
+        <ion-button shape="default" fill="solid" class="button3"
+          >Conócenos</ion-button
+        >
+      </ion-row>
+    </ion-col>
   </ion-grid>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Síguenos en nuestras redes sociales</ion-card-title>
+    </ion-card-header>  
+    <ion-card-content>
+      <ion-grid class="button-container">
+        <ion-col>
+          <ion-row>
+            <ion-button
+              expand="block"
+              shape="default"
+              href="https://www.instagram.com/ambbonalletra"
+              class="insta-button"
+            >
+              <ion-icon name="logo-instagram"></ion-icon> Instagram
+            </ion-button>
+          </ion-row>
+          <ion-row>
+            <ion-button
+              expand="block"
+              shape="default"
+              href="https://wa.me/622156052?text=Hola!"
+              class="whats-button"
+            >
+              <ion-icon name="logo-whatsapp"></ion-icon>Whatsapp
+            </ion-button>
+          </ion-row>
+          <ion-row>
+            <ion-button
+              expand="block"
+              shape="default"
+              href="https://www.facebook.com/profile.php?id=100054462251090"
+              class="face-button"
+            >
+              <ion-icon name="logo-facebook"></ion-icon>Facebook
+            </ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  
 </ion-content>

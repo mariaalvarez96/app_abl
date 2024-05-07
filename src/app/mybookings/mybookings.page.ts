@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api';
 import { CurrentUserManager } from '../services/currentUserManager';
 import { AlertController, IonModal } from '@ionic/angular';
 import { Booking } from '../entity/booking';
 import { Lesson } from '../entity/lesson';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mybookings',
@@ -11,7 +12,7 @@ import { Lesson } from '../entity/lesson';
   styleUrls: ['mybookings.page.scss']
 })
 
-export class MybookingsPage {
+export class MybookingsPage implements OnInit {
 
   @ViewChild(IonModal) modal: IonModal | undefined;
 
@@ -21,8 +22,15 @@ export class MybookingsPage {
   constructor(
     private api: ApiService,
     private currentUser: CurrentUserManager,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private router: Router
+  ) {
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/tabs/mybookings') {
+        this.ngOnInit();
+      }
+    })
+  }
 
   ngOnInit() {
     this.api.getAllLessons().subscribe(
@@ -41,6 +49,10 @@ export class MybookingsPage {
       }
     );
     
+  }
+
+  ionViewDidEnter() {
+    this.ngOnInit();
   }
 
   onWillDismiss(event: Event) {

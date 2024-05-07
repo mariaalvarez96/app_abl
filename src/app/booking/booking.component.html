@@ -10,8 +10,9 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   
   <ion-item>
-    <ion-label>Clase</ion-label>
+    <ion-label id="lesson">Clase</ion-label>
     <ion-select
+    label="lesson"
      placeholder="Selecciona clase"
      [(ngModel)]="lessonSelected">
       <ion-select-option *ngFor="let lesson of lessons" [value]="lesson">
@@ -38,8 +39,8 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Hora</ion-label>
-    <ion-select placeholder="Hora" [(ngModel)]="timeSelected">
+    <ion-label id="time">Hora</ion-label>
+    <ion-select label="time" placeholder="Hora" [(ngModel)]="timeSelected">
       <ion-select-option *ngFor="let hour of hours" [value]="hour">
         {{hour}}
       </ion-select-option>
@@ -47,8 +48,8 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Alumno</ion-label>
-    <ion-select placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
+    <ion-label id="student">Alumno</ion-label>
+    <ion-select label="student" placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
       <ion-select-option *ngFor="let student of students" [value]="student">
         {{student.name}}
       </ion-select-option>

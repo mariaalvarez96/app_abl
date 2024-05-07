@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookingComponent } from './booking/booking.component';
 import { SignUpComponent } from './signup/signup.component';
+import { SuppliesComponent } from './supplies/supplies.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -17,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [AppComponent, BookingComponent, SignUpComponent],
+  declarations: [AppComponent, BookingComponent, SignUpComponent, SuppliesComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, CommonModule, FormsModule, FlexLayoutModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync(), ApiService],
   bootstrap: [AppComponent],

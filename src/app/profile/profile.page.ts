@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
 
   @ViewChild(IonModal) modal: IonModal | undefined;
 
-  user: User = new User({ name: '', email: '' });
+  user: any = new User({ name: '', email: '' });
   edition: boolean = false;
   newPassword: string = '';
   repeatPassword: string = '';
@@ -35,6 +35,10 @@ export class ProfilePage implements OnInit {
     this.user =
       this.currentUserManager.getCurrentUser() ||
       new User({ name: '', email: '' });
+  }
+
+  ionViewDidEnter() {
+    this.user = this.currentUserManager.getCurrentUser();
   }
 
   onWillDismiss(event: Event) {}

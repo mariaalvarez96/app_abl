@@ -4,14 +4,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-card *ngFor="let booking of bookings">
     <ion-card-header>
       <ion-card-title>{{ booking.lesson.name + " (" + booking.student.name + ")" }}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      {{ booking.date + ' ' + booking.time }}
+      {{ booking.time + ' ' + booking.date }}
       <ion-item>
         <ion-button
           fill="outline"
@@ -24,4 +24,7 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <div style="text-align: right;">
+    <ion-button class="ion-padding" routerLink="/app-booking">Añadir reserva</ion-button>
+  </div>
 </ion-content>

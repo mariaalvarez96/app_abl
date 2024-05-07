@@ -4,7 +4,8 @@ import { BookingComponent } from './booking/booking.component';
 import { SignUpComponent } from './signup/signup.component';
 import { HomePage } from './home/home.page';
 import { MybookingsPage } from './mybookings/mybookings.page';
-import { MysuppliesPage } from './mysupplies/mysupplies.page';
+import { SuppliesComponent } from './supplies/supplies.component';
+
 
 
 const routes: Routes = [
@@ -29,9 +30,9 @@ const routes: Routes = [
     component: MybookingsPage
   },
   {
-    path: 'app-mysupplies',
-    component: MysuppliesPage
-  },
+    path: 'app-supplies',
+    component: SuppliesComponent
+  }
 ];
 @NgModule({
   imports: [

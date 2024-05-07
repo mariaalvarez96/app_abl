@@ -1,0 +1,10 @@
+.header-content {
+    display: grid;
+    grid-template-columns: auto 100px;
+    align-items: center; 
+  }
+  
+  .header-image {
+    max-width: 100%;
+    height: auto;
+  }
