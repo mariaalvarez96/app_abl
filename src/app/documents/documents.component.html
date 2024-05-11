@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Documentación</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card class="ion-text-center">
+    <ion-card-header>Documentación a aportar en el curso 2024/2025</ion-card-header>
+    <ion-card-content>
+            <ion-button (click)="getFileName('documentacion2025')">
+                <ion-icon name="cloud-download-outline" style="margin-right: 2px;"></ion-icon>
+                Descargar...              
+            </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ion-text-center">
+    <ion-card-header>Aceptación de condiciones para la contratación de servicios del centro de atención personal</ion-card-header>
+    <ion-card-content>
+        <ion-button (click)="getFileName('aceptacion_condiciones')">
+            <ion-icon name="cloud-download-outline" style="margin-right: 2px;"></ion-icon>
+            Descargar...              
+        </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ion-text-center">
+    <ion-card-header>Información del centro de estudios</ion-card-header>
+    <ion-card-content>
+        <ion-button (click)="getFileName('info_centroestudios')">
+            <ion-icon name="cloud-download-outline" style="margin-right: 2px;"></ion-icon>
+            Descargar...              
+        </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ion-text-center">
+    <ion-card-header>Inscripción al aula infantil para el curso 2024/2025</ion-card-header>
+    <ion-card-content>
+        <ion-button (click)="getFileName('insc_aulainfantil_2025')">
+            <ion-icon name="cloud-download-outline" style="margin-right: 2px;"></ion-icon>
+            Descargar...              
+        </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

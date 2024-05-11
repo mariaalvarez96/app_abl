@@ -3,13 +3,43 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      <div class="header-content">
-        <ion-title>Material de estudio</ion-title>
-      </div>
-    </ion-title>
+    <ion-title>Material</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
+<ion-card class="ion-padding">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">Apuntes para estudiar</ion-card-title>
+  </ion-card-header>  
+  <ion-card-content>
+    <ion-grid class="button-container">
+      <ion-col>
+        <ion-row>
+          <ion-button expand="block"shape="default" color="tertiary">Primaria</ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button expand="block" shape="default" color="secondary">
+            Secundaria
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button
+            expand="block"
+            shape="default"
+            color="warning"
+          >Bachillerato
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button
+            expand="block"
+            shape="default"
+            color="danger"
+          >Ciclos
+          </ion-button>
+        </ion-row>
+      </ion-col>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
 </ion-content>

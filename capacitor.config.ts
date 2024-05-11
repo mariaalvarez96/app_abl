@@ -4,9 +4,18 @@ const config: CapacitorConfig = {
   appId: 'com.ambbonalletra.app',
   appName: 'Amb Bona Lletra',
   webDir: 'www',
+  android: {
+    allowMixedContent: true
+  },
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'http',
+    iosScheme: 'http'
+  },
+  plugins: {
+    CapacitorHttp: {
+      enabled: true,
+    },
+  },
 };
 
 export default config;

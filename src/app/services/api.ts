@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Booking } from '../entity/booking';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  public readonly BASE_URL = 'http://localhost:8080';
+  public readonly BASE_URL = 'http://44.210.179.171:8003';
 
   constructor(private http: HttpClient) {}
 
@@ -27,11 +25,11 @@ export class ApiService {
     });
   }
 
-  public saveBooking(booking: any): Observable<any> {
+  public saveBooking(booking: any) {
     return this.http.post(`${this.BASE_URL}/booking/new`, booking);
   }
 
-  public loginUser(email: string, password: string): Observable<any> {
+  public loginUser(email: string, password: string) {
     return this.http.post(`${this.BASE_URL}/users/login`, {
       email,
       password,
@@ -76,19 +74,25 @@ export class ApiService {
       avatar,
     });
   }
-  public getBookingsByUser(dni: any): Observable<any> {
+  public getBookingsByUser(dni: any) {
     return this.http.get(`${this.BASE_URL}/booking/${dni}`);
   }
 
-  public deleteBookingById(id: any): Observable<any> {
-    return this.http.delete(`${this.BASE_URL}/booking/${id}`);
+  public deleteBookingById(id: any) {
+    return this.http.delete(`${this.BASE_URL}/booking/${id}`); 
   }
 
-  public getAllLessons(): Observable<any> {
+  public getAllLessons() {
     return this.http.get(`${this.BASE_URL}/lessons/list`);
   }
 
-  public getAllStudents(dni: any): Observable<any> {
+  public getAllStudents(dni: any) {
     return this.http.get(`${this.BASE_URL}/students/${dni}`);
+  }
+
+  public downloadDoc(fileName: string) {
+    return this.http.get(`${this.BASE_URL}/download/${fileName}`, {
+      responseType: 'blob' as 'json'
+    });
   }
 }

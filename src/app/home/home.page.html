@@ -1,15 +1,12 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <div class="header-content">
-        <ion-title style="font-size: 12px;">Bienvenido/a {{user?.name}}</ion-title>
+  <ion-toolbar class="header-content">
+        <ion-text style="font-size: 14px; padding-left: 2%;" slot="start">Bienvenido/a <span class="user-name">{{user?.name}}</span></ion-text>
         <img
-          src="../../assets/logo_sin_letra.png"
+          src="../../assets/icon/icon-only.png"
           alt="Imagen"
           class="header-image"
+          slot="end"
         />
-      </div>
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
@@ -44,8 +41,8 @@
         >
       </ion-row>
       <ion-row>
-        <ion-button shape="default" fill="solid" class="button3"
-          >Conócenos</ion-button
+        <ion-button shape="default" fill="solid" class="button3" routerLink="/app-documents"
+          >Documentación</ion-button
         >
       </ion-row>
     </ion-col>
@@ -87,6 +84,39 @@
             >
               <ion-icon name="logo-facebook"></ion-icon>Facebook
             </ion-button>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Enlaces de interés</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-padding">
+      <ion-grid >
+        <ion-col>
+          <ion-row>
+            <ion-item >
+              <ion-icon name="link-outline"></ion-icon>
+              <a href="https://www.educacionfpydeportes.gob.es/portada.html">Ministerio de Educación</a>
+            </ion-item>         
+          </ion-row>
+          <ion-row>
+            <ion-item >
+              <ion-icon name="link-outline"></ion-icon>
+              <a href="https://mestreacasa.gva.es/web/guest/inicio">Mestre a casa</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item >
+              <ion-icon name="link-outline"></ion-icon>
+              <a href="https://asociacionmontessori.net/">Asociación Montessori Española</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+           
           </ion-row>
         </ion-col>
       </ion-grid>

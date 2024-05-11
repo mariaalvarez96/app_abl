@@ -12,7 +12,7 @@
   <ion-item>
     <ion-label id="lesson">Clase</ion-label>
     <ion-select
-    label="lesson"
+    label=""
      placeholder="Selecciona clase"
      [(ngModel)]="lessonSelected">
       <ion-select-option *ngFor="let lesson of lessons" [value]="lesson">
@@ -40,7 +40,7 @@
 
   <ion-item>
     <ion-label id="time">Hora</ion-label>
-    <ion-select label="time" placeholder="Hora" [(ngModel)]="timeSelected">
+    <ion-select label="" placeholder="Hora" [(ngModel)]="timeSelected">
       <ion-select-option *ngFor="let hour of hours" [value]="hour">
         {{hour}}
       </ion-select-option>
@@ -49,7 +49,7 @@
 
   <ion-item>
     <ion-label id="student">Alumno</ion-label>
-    <ion-select label="student" placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
+    <ion-select label="" placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
       <ion-select-option *ngFor="let student of students" [value]="student">
         {{student.name}}
       </ion-select-option>

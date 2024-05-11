@@ -12,17 +12,18 @@
 }
 
 .header-content {
-    display: grid;
-    grid-template-columns: auto 100px;
-    justify-content: space-between;
-  }
-  
+  display: flex;
+  width: 100%;
   .header-image {
-    max-width: 75px;
-    margin-left: 25px;
-    margin-bottom: 6px;
+    width: 40px; 
     height: auto;
+    padding-right: 5px;
   }
+}
+  
+.user-name {
+  color: #4f9ced;
+}  
 
 .button1 {
     --background: #d83e96;
