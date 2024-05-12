@@ -48,10 +48,12 @@ export class DocumentsComponent implements OnInit {
         encoding: Encoding.UTF8,
       });
       console.log('Archivo guardado:', result);
-      this.toastController.create({
-        message: "Archivo descargado",
-        duration: 600
+      let toast = this.toastController.create({
+        message: "Archivo descargado correctamente",
+        duration: 3600,
+        position: 'bottom'
       });
+      (await toast).present();
     });
   }
 
