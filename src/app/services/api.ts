@@ -95,4 +95,10 @@ export class ApiService {
       responseType: 'blob' as 'json'
     });
   }
+
+  public downloadSupplies(fileName: string) {
+    return this.http.get(`${this.BASE_URL}/supplies/${fileName}`, {
+      responseType: 'blob' as 'json'
+    });
+  }
 }

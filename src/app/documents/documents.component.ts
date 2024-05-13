@@ -33,7 +33,7 @@ export class DocumentsComponent implements OnInit {
       const blobURL = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = blobURL;
-      link.download = 'archivo.pdf';
+      link.download = filename+'.pdf';
       link.click();
     });
   }

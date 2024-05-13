@@ -6,6 +6,7 @@ import { HomePage } from './home/home.page';
 import { MybookingsPage } from './mybookings/mybookings.page';
 import { SuppliesComponent } from './supplies/supplies.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { SuppliesoptionComponent } from './suppliesoption/suppliesoption.component';
 
 
 
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'app-documents',
     component: DocumentsComponent
+  },
+  {
+    path: 'app-supplies-option',
+    component: SuppliesoptionComponent
   }
 ];
 @NgModule({
