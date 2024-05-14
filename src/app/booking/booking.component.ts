@@ -3,7 +3,7 @@ import { User } from '../entity/user';
 import { CurrentUserManager } from '../services/currentUserManager';
 import { ApiService } from '../services/api';
 import { Lesson } from '../entity/lesson';
-import { DatetimeChangeEventDetail } from '@ionic/angular';
+import { AlertController, DatetimeChangeEventDetail } from '@ionic/angular';
 import { IonDatetimeCustomEvent } from '@ionic/core';
 import { Student } from '../entity/student';
 import { Router } from '@angular/router';
@@ -30,7 +30,8 @@ export class BookingComponent {
   constructor(
     private currentUserManager: CurrentUserManager,
     private api: ApiService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) {
     this.user = this.currentUserManager.getCurrentUser();
     this.api.getAllLessons().subscribe(
@@ -91,6 +92,14 @@ export class BookingComponent {
     this.api.saveBooking(booking).subscribe(
       (response: any) => {
         this.router.navigate(['/tabs/mybookings']);
+      },
+      async (error) => {
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: error.error, 
+          buttons: ['OK'],
+        });
+        await alert.present();
       }
     );
   }

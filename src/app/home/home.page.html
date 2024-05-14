@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <ion-card *ngIf="!isUserLogged">
     <ion-card-header>
       <ion-card-title class="ion-text-center">Importante!</ion-card-title>
     </ion-card-header>  
