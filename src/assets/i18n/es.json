@@ -1,0 +1,13 @@
+{
+    "welcome": "Bienvenido/a",
+    "home" : {
+        "warning": "Importante!",
+        "must-login": "Para reservar cualquier clase o para acceder al material debe estar registrado como usuario.",
+        "follow-us": "Síguenos en nuestras redes sociales",
+        "links": "Enlaces de interés",
+        "book-lesson": "Reservar clase",
+        "study-resources": "Material estudio",
+        "documents": "Documentación"
+    }
+
+}

@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
   constructor(
     private currentUserManager: CurrentUserManager,
     private router: Router,
@@ -129,5 +130,13 @@ export class ProfilePage implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigate(['/tabs/home']);
+  }
+
+  deleteAvatar() {
+    this.api.deleteAvatar(this.user.dni).subscribe(
+      (response: any) => {
+        this.user.avatar = null;
+      }
+    )
   }
 }

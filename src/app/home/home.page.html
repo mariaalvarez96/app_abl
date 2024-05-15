@@ -1,22 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="header-content">
-        <ion-text style="font-size: 14px; padding-left: 2%;" slot="start">Bienvenido/a <span class="user-name">{{user?.name}}</span></ion-text>
-        <img
-          src="../../assets/icon/icon-only.png"
-          alt="Imagen"
-          class="header-image"
-          slot="end"
-        />
+    <ion-text style="font-size: 14px; padding-left: 2%" slot="start">
+      {{ 'welcome' | translate }}
+      <span class="user-name">{{user?.name}}</span></ion-text
+    >
+    <img
+      src="../../assets/icon/icon-only.png"
+      alt="Imagen"
+      class="header-image"
+      slot="end"
+    />
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
   <ion-card *ngIf="!isUserLogged">
     <ion-card-header>
-      <ion-card-title class="ion-text-center">Importante!</ion-card-title>
-    </ion-card-header>  
-    <ion-card-content>
-      Para reservar cualquier clase o para acceder al material debe estar registrado como usuario.
-    </ion-card-content>
+      <ion-card-title class="ion-text-center">
+        {{ 'home.warning' | translate }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content> {{ 'home.must-login' | translate }} </ion-card-content>
   </ion-card>
   <ion-grid class="button-container">
     <ion-col>
@@ -27,8 +30,9 @@
           class="button1"
           routerLink="/app-booking"
           [disabled]="!isUserLogged"
-          >Reservar clase</ion-button
         >
+          {{ 'home.book-lesson' | translate }}
+        </ion-button>
       </ion-row>
       <ion-row>
         <ion-button
@@ -37,21 +41,31 @@
           class="button2"
           routerLink="/app-supplies"
           [disabled]="!isUserLogged"
-          > <span style="color: black;">Material estudio</span></ion-button
         >
+          <span style="color: black">
+            {{ 'home.study-resources' | translate }}
+          </span>
+        </ion-button>
       </ion-row>
       <ion-row>
-        <ion-button shape="default" fill="solid" class="button3" routerLink="/app-documents"
-          >Documentación</ion-button
+        <ion-button
+          shape="default"
+          fill="solid"
+          class="button3"
+          routerLink="/app-documents"
         >
+        {{ 'home.documents' | translate }}
+        </ion-button>
       </ion-row>
     </ion-col>
   </ion-grid>
-  
+
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="ion-text-center">Síguenos en nuestras redes sociales</ion-card-title>
-    </ion-card-header>  
+      <ion-card-title class="ion-text-center">
+        {{ 'home.follow-us' | translate }}
+      </ion-card-title>
+    </ion-card-header>
     <ion-card-content>
       <ion-grid class="button-container">
         <ion-col>
@@ -92,35 +106,40 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title class="ion-text-center">Enlaces de interés</ion-card-title>
+      <ion-card-title class="ion-text-center">
+        {{ 'home.links' | translate }}
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-padding">
-      <ion-grid >
+      <ion-grid>
         <ion-col>
           <ion-row>
-            <ion-item >
+            <ion-item>
               <ion-icon name="link-outline"></ion-icon>
-              <a href="https://www.educacionfpydeportes.gob.es/portada.html">Ministerio de Educación</a>
-            </ion-item>         
-          </ion-row>
-          <ion-row>
-            <ion-item >
-              <ion-icon name="link-outline"></ion-icon>
-              <a href="https://mestreacasa.gva.es/web/guest/inicio">Mestre a casa</a>
+              <a href="https://www.educacionfpydeportes.gob.es/portada.html">
+                Ministerio de Educación
+              </a>
             </ion-item>
           </ion-row>
           <ion-row>
-            <ion-item >
+            <ion-item>
               <ion-icon name="link-outline"></ion-icon>
-              <a href="https://asociacionmontessori.net/">Asociación Montessori Española</a>
+              <a href="https://mestreacasa.gva.es/web/guest/inicio">
+                Mestre a casa
+              </a>
             </ion-item>
           </ion-row>
           <ion-row>
-           
+            <ion-item>
+              <ion-icon name="link-outline"></ion-icon>
+              <a href="https://asociacionmontessori.net/">
+                Asociación Montessori Española
+              </a>
+            </ion-item>
           </ion-row>
+          <ion-row> </ion-row>
         </ion-col>
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  
 </ion-content>

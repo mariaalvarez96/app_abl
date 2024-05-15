@@ -3,6 +3,7 @@ import { ApiService } from '../services/api';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 import { Capacitor } from '@capacitor/core';
 import { ToastController } from '@ionic/angular';
+import { FileDocument } from '../entity/fileDocument';
 
 @Component({
   selector: 'app-documents',
@@ -10,12 +11,38 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./documents.component.scss'],
 })
 export class DocumentsComponent implements OnInit {
+
+  documents: FileDocument[] = [];
   constructor(
     private api: ApiService,
     private toastController: ToastController
-  ) {}
+  ) {
+    this.documents = [
+      new FileDocument('documentacion2025', 'Documentación a aportar en el curso 2024/2025'),
+      new FileDocument('aceptacion_condiciones', 'Aceptación de condiciones para la contratación de servicios del centro de atención personal'),
+      new FileDocument('info_centroestudios', 'Información del centro de estudios'),
+      new FileDocument('insc_aulainfantil_2025', 'Inscripción al aula infantil para el curso 2024/2025'),
+    ]
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.documents.map(async (doc) => {
+      doc.setSize(await this.getFileSize(doc.name));
+    });
+  }
+
+  async getFileSize(fileName: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      this.api.downloadDoc(fileName).subscribe((response: any) => {
+        let fileSizeInMegabytes = this.bytesToMegabytes(response.fileSize);
+        resolve(fileSizeInMegabytes);
+      });
+    });
+  }
+
+  bytesToMegabytes(bytes: number): number {
+    return parseFloat((bytes / (1024 * 1024)).toFixed(2));
+  }
 
   async checkPermissions(): Promise<boolean> {
     try {

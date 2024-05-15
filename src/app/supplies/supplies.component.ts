@@ -15,6 +15,7 @@ export class SuppliesComponent {
 
   user: User|null = null;
   selectedOption: string = '';
+  fileSize: number = 0;
 
   constructor(
     private currentUserManager: CurrentUserManager,
@@ -56,6 +57,7 @@ export class SuppliesComponent {
   downloadAndOpenFileInBrowser(filename: string) {
     this.api.downloadSupplies(filename).subscribe((response: any) => {
       const file = new Blob([response], { type: 'application/pdf' });
+      this.fileSize = response.fileSize;
       const blobURL = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = blobURL;
@@ -67,13 +69,14 @@ export class SuppliesComponent {
   async downloadAndSaveFile(filename: string) {
     this.api.downloadSupplies(filename).subscribe(async (response: any) => {
       let string = await response.text();
+      this.fileSize = response.fileSize;
       const result = await Filesystem.writeFile({
         path: 'Download/' + filename + '.pdf',
         data: string,
         directory: Directory.ExternalStorage,
         encoding: Encoding.UTF8,
       });
-      console.log('Archivo guardado:', result);
+
       let toast = this.toastController.create({
         message: "Archivo descargado correctamente",
         duration: 3600,
