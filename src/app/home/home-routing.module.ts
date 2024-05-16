@@ -6,16 +6,6 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children: [
-      /* {
-        path: 'supplies',
-        loadChildren: () => import('../supplies/supplies.component').then(m => m.SuppliesComponent)
-      }, */
-    ]
-  },
-  {
-    path: '',
-    component: HomePage,
   },
 ];
 

@@ -8,10 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   constructor(translate: TranslateService) {
-    translate.setDefaultLang('es');
-    console.log("test");
-    translate.get('welcome', {value: 'paco'}).subscribe((res: string) => {
-      console.log(res);
-    })
+    translate.setDefaultLang('es'); 
   }
 }

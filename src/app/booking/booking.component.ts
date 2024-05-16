@@ -8,19 +8,17 @@ import { IonDatetimeCustomEvent } from '@ionic/core';
 import { Student } from '../entity/student';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
 })
 export class BookingComponent {
-
-  user: User|null = null;
+  user: User | null = null;
   lessons: Lesson[] = [];
   students: Student[] = [];
   dates: string[] = [];
-  lessonSelected: Lesson|null = null;
+  lessonSelected: Lesson | null = null;
   daySelected: any;
   selectedTime: string = '';
   hours: string[] = [];
@@ -34,22 +32,18 @@ export class BookingComponent {
     private alertController: AlertController
   ) {
     this.user = this.currentUserManager.getCurrentUser();
-    this.api.getAllLessons().subscribe(
-      (response: any) => {
-        this.lessons = response.map((lesson: any) => new Lesson(lesson));
-      }
-    )
+    this.api.getAllLessons().subscribe((response: any) => {
+      this.lessons = response.map((lesson: any) => new Lesson(lesson));
+    });
     this.dayValues();
-    this.api.getAllStudents(this.user?.dni).subscribe(
-      (response: any) => {
-        this.students = response.map((student: any) => new Student(student));
-      }
-    )
+    this.api.getAllStudents(this.user?.dni).subscribe((response: any) => {
+      this.students = response.map((student: any) => new Student(student));
+    });
   }
 
   minDate() {
     let date = new Date();
-    date.setHours(4,0,0,0);
+    date.setHours(4, 0, 0, 0);
     return date.toISOString().slice(0, 19);
   }
 
@@ -61,9 +55,9 @@ export class BookingComponent {
 
   dayValues() {
     let maxDays = 28;
-    let now = new Date(); 
+    let now = new Date();
     let res = [];
-    for (let i = 0;maxDays > i; i++) {
+    for (let i = 0; maxDays > i; i++) {
       if (this.lessonSelected?.getDays().includes(now.getDay())) {
         res.push(now.getDate());
       }
@@ -74,20 +68,23 @@ export class BookingComponent {
   }
 
   dateTimeUpdated(event: IonDatetimeCustomEvent<DatetimeChangeEventDetail>) {
-    let dateString = event.detail.value + "";
+    let dateString = event.detail.value + '';
     let date = new Date(dateString);
-    if (this.lessonSelected && this.lessonSelected.getTimesByDay(date.getDay())) {
+    if (
+      this.lessonSelected &&
+      this.lessonSelected.getTimesByDay(date.getDay())
+    ) {
       this.hours = this.lessonSelected.getTimesByDay(date.getDay());
     }
   }
 
   saveBooking() {
     let booking = {
-      user: {dni: this.user?.dni},
-      lesson: {id: this.lessonSelected?.id},
-      date: (new Date(this.daySelected)).toISOString().slice(0, 10),
+      user: { dni: this.user?.dni },
+      lesson: { id: this.lessonSelected?.id },
+      date: new Date(this.daySelected).toISOString().slice(0, 10),
       time: this.timeSelected,
-      student: {id: this.studentSelected?.id}
+      student: { id: this.studentSelected?.id },
     };
     this.api.saveBooking(booking).subscribe(
       (response: any) => {
@@ -96,12 +93,11 @@ export class BookingComponent {
       async (error) => {
         const alert = await this.alertController.create({
           header: 'Error',
-          message: error.error, 
+          message: error.error,
           buttons: ['OK'],
         });
         await alert.present();
       }
     );
   }
-    
 }

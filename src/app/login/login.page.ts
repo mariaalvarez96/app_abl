@@ -7,10 +7,9 @@ import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
-  styleUrls: ['login.page.scss']
+  styleUrls: ['login.page.scss'],
 })
 export class LoginPage {
-
   constructor(
     private Api: ApiService,
     private router: Router,
@@ -37,7 +36,7 @@ export class LoginPage {
       async (error) => {
         const alert = await this.alertController.create({
           header: 'Error',
-          message: error.error, 
+          message: error.error,
           buttons: ['OK'],
         });
         await alert.present();

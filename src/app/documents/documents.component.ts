@@ -11,18 +11,29 @@ import { FileDocument } from '../entity/fileDocument';
   styleUrls: ['./documents.component.scss'],
 })
 export class DocumentsComponent implements OnInit {
-
   documents: FileDocument[] = [];
   constructor(
     private api: ApiService,
     private toastController: ToastController
   ) {
     this.documents = [
-      new FileDocument('documentacion2025', 'Documentación a aportar en el curso 2024/2025'),
-      new FileDocument('aceptacion_condiciones', 'Aceptación de condiciones para la contratación de servicios del centro de atención personal'),
-      new FileDocument('info_centroestudios', 'Información del centro de estudios'),
-      new FileDocument('insc_aulainfantil_2025', 'Inscripción al aula infantil para el curso 2024/2025'),
-    ]
+      new FileDocument(
+        'documentacion2025',
+        'Documentación a aportar en el curso 2024/2025'
+      ),
+      new FileDocument(
+        'aceptacion_condiciones',
+        'Aceptación de condiciones para la contratación de servicios del centro de atención personal'
+      ),
+      new FileDocument(
+        'info_centroestudios',
+        'Información del centro de estudios'
+      ),
+      new FileDocument(
+        'insc_aulainfantil_2025',
+        'Inscripción al aula infantil para el curso 2024/2025'
+      ),
+    ];
   }
 
   ngOnInit() {
@@ -49,7 +60,6 @@ export class DocumentsComponent implements OnInit {
       const permissionStatus = await Filesystem.requestPermissions();
       return permissionStatus.publicStorage === 'granted';
     } catch (error) {
-      console.error('Error al solicitar permisos:', error);
       return false;
     }
   }
@@ -60,7 +70,7 @@ export class DocumentsComponent implements OnInit {
       const blobURL = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = blobURL;
-      link.download = filename+'.pdf';
+      link.download = filename + '.pdf';
       link.click();
     });
   }
@@ -74,11 +84,10 @@ export class DocumentsComponent implements OnInit {
         directory: Directory.ExternalStorage,
         encoding: Encoding.UTF8,
       });
-      console.log('Archivo guardado:', result);
       let toast = this.toastController.create({
-        message: "Archivo descargado correctamente",
+        message: 'Archivo descargado correctamente',
         duration: 3600,
-        position: 'bottom'
+        position: 'bottom',
       });
       (await toast).present();
     });
@@ -91,7 +100,12 @@ export class DocumentsComponent implements OnInit {
       if (permissions) {
         this.downloadAndSaveFile(filename);
       } else {
-        alert('Permisos no concedidos');
+        let toast = this.toastController.create({
+          message: 'La aplicación no tiene permisos para descargar el archivo',
+          duration: 3600,
+          position: 'bottom',
+        });
+        (await toast).present();
       }
     } else {
       this.downloadAndOpenFileInBrowser(filename);

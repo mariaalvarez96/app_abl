@@ -1,21 +1,21 @@
 .button-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px; 
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
 
 .button-container ion-button {
   margin-bottom: 10px;
   flex: 1;
-  align-self: center; 
+  align-self: center;
 }
 
 .header-content {
   display: flex;
   width: 100%;
   .header-image {
-    width: 40px; 
+    width: 40px;
     height: auto;
     padding-right: 5px;
   }
@@ -23,19 +23,18 @@
 
 .user-name {
   color: #4f9ced;
-}  
+}
 
 .button1 {
-    --background: #d83e96;
-    
+  --background: #d83e96;
 }
 
 .button2 {
-    --background: #FAE575
+  --background: #fae575;
 }
 
 .button3 {
-    --background: #4f9ced;
+  --background: #4f9ced;
 }
 
 ion-icon {

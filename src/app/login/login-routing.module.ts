@@ -9,10 +9,11 @@ const routes: Routes = [
     children: [
       {
         path: 'signup',
-        loadChildren: () => import('../signup/signup.component').then(m => m.SignUpComponent)
+        loadChildren: () =>
+          import('../signup/signup.component').then((m) => m.SignUpComponent),
       },
-    ]
-  }, 
+    ],
+  },
   {
     path: '',
     component: LoginPage,
@@ -21,6 +22,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class LoginPageRoutingModule {}

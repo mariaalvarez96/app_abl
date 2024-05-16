@@ -6,15 +6,14 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     HomePageRoutingModule,
-    TranslateModule
+    TranslateModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
 })
 export class HomePageModule {}

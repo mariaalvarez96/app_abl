@@ -7,145 +7,144 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-<ion-card>
-  <ion-card-header>
-    <ion-card-title class="ion-text-center">Primaria</ion-card-title>
-  </ion-card-header>  
-  <ion-card-content >
-    <ion-grid class="ion-text-center">
-      <ion-col>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes1primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 1º</a>
-          </ion-item>         
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes2primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 2º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes3primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 3º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes4primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 4º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes5primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 5º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('apuntes6primaria', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 6º</a>
-          </ion-item>
-        </ion-row>
-      </ion-col>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-card-title class="ion-text-center">Secundaria</ion-card-title>
-  </ion-card-header>  
-  <ion-card-content >
-    <ion-grid class="ion-text-center">
-      <ion-col>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_primero', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 1º</a>
-          </ion-item>        
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_segundo', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 2º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_tercero', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 3º</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_cuarto', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 4º</a>
-          </ion-item>
-        </ion-row>
-        
-      </ion-col>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-card-title class="ion-text-center">Bachillerato</ion-card-title>
-  </ion-card-header>  
-  <ion-card-content >
-    <ion-grid class="ion-text-center">
-      <ion-col>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_1bachiller', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 1º</a>
-          </ion-item>         
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_2bachiller', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de 2º</a>
-          </ion-item>
-        </ion-row>
-      </ion-col>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-<ion-card>
-  <ion-card-header>
-    <ion-card-title class="ion-text-center">Ciclos</ion-card-title>
-  </ion-card-header>  
-  <ion-card-content >
-    <ion-grid class="ion-text-center">
-      <ion-col>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_DAM', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de DAM</a>
-          </ion-item>         
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_DAW', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de DAW</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_ASIR', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de ASIR</a>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item (click)="getFileName('repaso_AYF', $event)">
-            <ion-icon name="book-outline"></ion-icon>
-            <a href="#">Repaso de AYF</a>
-          </ion-item>
-        </ion-row>       
-      </ion-col>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Primaria</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="ion-text-center">
+        <ion-col>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes1primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 1º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes2primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 2º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes3primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 3º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes4primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 4º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes5primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 5º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('apuntes6primaria', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 6º</a>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Secundaria</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="ion-text-center">
+        <ion-col>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_primero', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 1º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_segundo', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 2º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_tercero', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 3º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_cuarto', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 4º</a>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Bachillerato</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="ion-text-center">
+        <ion-col>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_1bachiller', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 1º</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_2bachiller', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de 2º</a>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Ciclos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid class="ion-text-center">
+        <ion-col>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_DAM', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de DAM</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_DAW', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de DAW</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_ASIR', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de ASIR</a>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item (click)="getFileName('repaso_AYF', $event)">
+              <ion-icon name="book-outline"></ion-icon>
+              <a href="#">Repaso de AYF</a>
+            </ion-item>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

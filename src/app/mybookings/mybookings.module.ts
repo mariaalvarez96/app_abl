@@ -10,8 +10,8 @@ import { MybookingsPageRoutingModule } from './mybookings-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    MybookingsPageRoutingModule
+    MybookingsPageRoutingModule,
   ],
-  declarations: [MybookingsPage]
+  declarations: [MybookingsPage],
 })
 export class MybookingsPageModule {}

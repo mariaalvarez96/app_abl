@@ -5,140 +5,155 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<ion-grid [fixed]="true" class="ion-padding">
-  <ion-row>
-    <ion-col>
-      <ion-item>
-        <ion-avatar slot="start" style="width: 120px; height: 120px;">
-          <img [src]=" user.avatar ? 'data:image/jpeg;base64,' + user.avatar : 'https://ionicframework.com/docs/img/demos/avatar.svg'"/>
-        </ion-avatar>
-        <div style="margin-left: auto;" slot="end">
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display:none;" #fileInput/>
-        <ion-button (click)="fileInput.click()">Cambiar imagen</ion-button>
-        <ion-button (click)="deleteAvatar()">Borrar avatar</ion-button></div>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked" aria-label="dni">Documento nacional de identidad</ion-label>
-        <ion-input
-          type="text"
-          [(ngModel)]="user.dni"
-          [clearInput]="true"
-          disabled
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked" aria-label="name">Name</ion-label>
-        <ion-input
-          type="name"
-          [(ngModel)]="user.name"
-          [clearInput]="true"
-          [disabled]="!edition"
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked" aria-label="Email">Email</ion-label>
-        <ion-input
-          type="email"
-          [(ngModel)]="user.email"
-          [clearInput]="true"
-          [disabled]="!edition"
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked" aria-label="phone">Teléfono</ion-label>
-        <ion-input
-          type="tel"
-          [(ngModel)]="user.phone"
-          [clearInput]="true"
-          [disabled]="!edition"
-        ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked" aria-label="password"
-          >Contraseña</ion-label
-        >
-        <ion-input
-          type="password"
-          [(ngModel)]="user.password"
-          [clearInput]="true"
-          disabled
-        ></ion-input>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-
-  <ion-grid>
+  <ion-grid [fixed]="true" class="ion-padding">
     <ion-row>
       <ion-col>
-        <ng-container *ngIf="!edition">
-          <ion-button (click)="enableEdit()" expand="block"
-            >Editar datos</ion-button
+        <ion-item>
+          <ion-avatar slot="start" style="width: 120px; height: 120px">
+            <img
+              [src]=" user.avatar ? 'data:image/jpeg;base64,' + user.avatar : 'https://ionicframework.com/docs/img/demos/avatar.svg'"
+            />
+          </ion-avatar>
+          <div style="margin-left: auto" slot="end">
+            <input
+              type="file"
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              style="display: none"
+              #fileInput
+            />
+            <ion-button (click)="fileInput.click()">Cambiar imagen</ion-button>
+            <ion-button (click)="deleteAvatar()">Borrar avatar</ion-button>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked" aria-label="dni"
+            >Documento nacional de identidad</ion-label
           >
-        </ng-container>
-        <ng-container *ngIf="edition">
-          <ion-button (click)="saveData()" expand="block"
-            >Guardar datos</ion-button
-          >
-        </ng-container>
+          <ion-input
+            type="text"
+            [(ngModel)]="user.dni"
+            [clearInput]="true"
+            disabled
+          ></ion-input>
+        </ion-item>
 
-        <ion-button id="open-modal" expand="block"
-          >Cambiar contraseña</ion-button
-        >
-        <ion-button (click)="logout()" expand="block" color="danger">Cerrar sesión</ion-button>
+        <ion-item>
+          <ion-label position="stacked" aria-label="name">Name</ion-label>
+          <ion-input
+            type="name"
+            [(ngModel)]="user.name"
+            [clearInput]="true"
+            [disabled]="!edition"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" aria-label="Email">Email</ion-label>
+          <ion-input
+            type="email"
+            [(ngModel)]="user.email"
+            [clearInput]="true"
+            [disabled]="!edition"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" aria-label="phone">Teléfono</ion-label>
+          <ion-input
+            type="tel"
+            [(ngModel)]="user.phone"
+            [clearInput]="true"
+            [disabled]="!edition"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" aria-label="password"
+            >Contraseña</ion-label
+          >
+          <ion-input
+            type="password"
+            [(ngModel)]="user.password"
+            [clearInput]="true"
+            disabled
+          ></ion-input>
+        </ion-item>
       </ion-col>
     </ion-row>
-  </ion-grid>
 
-  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button (click)="cancel()">Cancelar</ion-button>
-          </ion-buttons>
-          <ion-title>Cambiar contraseña</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-item class="ion-padding">
-          <ion-input
-          pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=\.?¿!¡]).{6,}$"
-            type="password"
-            fill="solid"
-            [clearInput]="true"
-            [(ngModel)]="newPassword"
-            label="Introduzca la nueva contraseña"
-            labelPlacement="floating"
-            password
-          ></ion-input>
-        </ion-item>
-        <ion-item class="ion-padding">
-          <ion-input
-            pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=\.?¿!¡]).{6,}$"
-            type="password"
-            fill="solid"
-            [clearInput]="true"
-            [(ngModel)]="repeatPassword"
-            (ionInput)="verifyPasswords()"
-            [ngClass]="{'ion-invalid': !areTheyEqual}"
-            label="Repita la nueva contraseña"
-            labelPlacement="floating"
-            password
-          ></ion-input>
-        </ion-item>
-        <ion-text color="danger" *ngIf="!areTheyEqual" class="ion-padding">Las contraseñas no coinciden</ion-text
->
-        <ion-button
-          (click)="savePassword()"
-          [disabled]="!areTheyEqual"
-          class="ion-padding save-password"
-          >Guardar nueva contraseña</ion-button>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-</ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ng-container *ngIf="!edition">
+            <ion-button (click)="enableEdit()" expand="block"
+              >Editar datos</ion-button
+            >
+          </ng-container>
+          <ng-container *ngIf="edition">
+            <ion-button (click)="saveData()" expand="block"
+              >Guardar datos</ion-button
+            >
+          </ng-container>
+
+          <ion-button id="open-modal" expand="block"
+            >Cambiar contraseña</ion-button
+          >
+          <ion-button (click)="logout()" expand="block" color="danger"
+            >Cerrar sesión</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancelar</ion-button>
+            </ion-buttons>
+            <ion-title>Cambiar contraseña</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item class="ion-padding">
+            <ion-input
+              pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=\.?¿!¡]).{6,}$"
+              type="password"
+              fill="solid"
+              [clearInput]="true"
+              [(ngModel)]="newPassword"
+              label="Introduzca la nueva contraseña"
+              labelPlacement="floating"
+              password
+            ></ion-input>
+          </ion-item>
+          <ion-item class="ion-padding">
+            <ion-input
+              pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=\.?¿!¡]).{6,}$"
+              type="password"
+              fill="solid"
+              [clearInput]="true"
+              [(ngModel)]="repeatPassword"
+              (ionInput)="verifyPasswords()"
+              [ngClass]="{'ion-invalid': !areTheyEqual}"
+              label="Repita la nueva contraseña"
+              labelPlacement="floating"
+              password
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="!areTheyEqual" class="ion-padding"
+            >Las contraseñas no coinciden</ion-text
+          >
+          <ion-button
+            (click)="savePassword()"
+            [disabled]="!areTheyEqual"
+            class="ion-padding save-password"
+            >Guardar nueva contraseña</ion-button
+          >
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-grid>
 </ion-content>

@@ -60,7 +60,7 @@
           type="email"
           fill="solid"
           placeholder="example@dominio.com"
-          [clearInput]="true"        
+          [clearInput]="true"
           [(ngModel)]="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
         ></ion-input>
@@ -79,7 +79,6 @@
           [(ngModel)]="password"
           [clearInput]="true"
           pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=\.?¿!¡]).{6,}$"
-
         ></ion-input>
         <ion-icon
           name="{{ showPassword ? 'eye' : 'eye-off' }}"
@@ -91,7 +90,9 @@
   </ion-row>
   <ion-row>
     <ion-col>
-      <ion-button expand="block" (click)="createUser()">Crear cuenta</ion-button>
+      <ion-button expand="block" (click)="createUser()"
+        >Crear cuenta</ion-button
+      >
     </ion-col>
   </ion-row>
 </ion-grid>

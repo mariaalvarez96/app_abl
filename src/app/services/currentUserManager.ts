@@ -21,5 +21,4 @@ export class CurrentUserManager {
     let userString: string | null = localStorage.getItem('currentUser');
     return userString !== null && userString.length > 0;
   }
-
 }

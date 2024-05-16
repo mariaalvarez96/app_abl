@@ -3,37 +3,39 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title> Reservar Clase </ion-title>
+    <ion-title> Reservar Servicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  
   <ion-item>
     <ion-label id="lesson">Clase</ion-label>
     <ion-select
-    label=""
-     placeholder="Selecciona clase"
-     [(ngModel)]="lessonSelected">
+      label=""
+      placeholder="Selecciona clase"
+      [(ngModel)]="lessonSelected"
+    >
       <ion-select-option *ngFor="let lesson of lessons" [value]="lesson">
-        {{lesson.name}}
+        {{ lesson.name }}
       </ion-select-option>
     </ion-select>
   </ion-item>
 
-  
   <ion-item>
     <ion-label>Fecha</ion-label>
     <ion-datetime-button datetime="datetime"></ion-datetime-button>
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime id="datetime"
-        [min]="minDate()"
-        [max]="maxDate()"
-        [dayValues]="dayValues()"
-        [(ngModel)]="daySelected"
-        (ionChange)="dateTimeUpdated($event)"
-        presentation="date" preferWheel="false"></ion-datetime>
+        <ion-datetime
+          id="datetime"
+          [min]="minDate()"
+          [max]="maxDate()"
+          [dayValues]="dayValues()"
+          [(ngModel)]="daySelected"
+          (ionChange)="dateTimeUpdated($event)"
+          presentation="date"
+          preferWheel="false"
+        ></ion-datetime>
       </ng-template>
     </ion-modal>
   </ion-item>
@@ -42,16 +44,20 @@
     <ion-label id="time">Hora</ion-label>
     <ion-select label="" placeholder="Hora" [(ngModel)]="timeSelected">
       <ion-select-option *ngFor="let hour of hours" [value]="hour">
-        {{hour}}
+        {{ hour }}
       </ion-select-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label id="student">Alumno</ion-label>
-    <ion-select label="" placeholder="Selecciona alumno" [(ngModel)]="studentSelected">
+    <ion-select
+      label=""
+      placeholder="Selecciona alumno"
+      [(ngModel)]="studentSelected"
+    >
       <ion-select-option *ngFor="let student of students" [value]="student">
-        {{student.name}}
+        {{ student.name }}
       </ion-select-option>
     </ion-select>
   </ion-item>

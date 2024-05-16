@@ -10,7 +10,7 @@ describe('MybookingsPage', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MybookingsPage],
-      imports: [IonicModule.forRoot(),]
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MybookingsPage);

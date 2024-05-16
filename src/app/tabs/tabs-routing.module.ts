@@ -9,27 +9,33 @@ const routes: Routes = [
     children: [
       {
         path: 'mybookings',
-        loadChildren: () => import('../mybookings/mybookings.module').then(m => m.MybookingsPageModule)
+        loadChildren: () =>
+          import('../mybookings/mybookings.module').then(
+            (m) => m.MybookingsPageModule
+          ),
       },
       {
         path: 'login',
-        loadChildren: () => import('../login/login.module').then(m => m.LoginPageModule)
+        loadChildren: () =>
+          import('../login/login.module').then((m) => m.LoginPageModule),
       },
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
-      },   
+        loadChildren: () =>
+          import('../home/home.module').then((m) => m.HomePageModule),
+      },
       {
         path: 'profile',
-        loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
-      }, 
-    ]
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfilePageModule),
+      },
+    ],
   },
   {
     path: '',
     redirectTo: '/tabs/home',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

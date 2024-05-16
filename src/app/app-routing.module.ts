@@ -6,48 +6,42 @@ import { HomePage } from './home/home.page';
 import { MybookingsPage } from './mybookings/mybookings.page';
 import { SuppliesComponent } from './supplies/supplies.component';
 import { DocumentsComponent } from './documents/documents.component';
-import { SuppliesoptionComponent } from './suppliesoption/suppliesoption.component';
-
-
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
     path: 'app-booking',
-    component: BookingComponent
+    component: BookingComponent,
   },
   {
     path: 'app-signup',
-    component: SignUpComponent
+    component: SignUpComponent,
   },
   {
     path: 'app-home',
-    component: HomePage
+    component: HomePage,
   },
   {
     path: 'app-mybookings',
-    component: MybookingsPage
+    component: MybookingsPage,
   },
   {
     path: 'app-supplies',
-    component: SuppliesComponent
+    component: SuppliesComponent,
   },
   {
     path: 'app-documents',
-    component: DocumentsComponent
+    component: DocumentsComponent,
   },
-  {
-    path: 'app-supplies-option',
-    component: SuppliesoptionComponent
-  }
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

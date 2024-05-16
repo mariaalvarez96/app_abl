@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -80,7 +80,7 @@ export class ApiService {
   }
 
   public deleteBookingById(id: any) {
-    return this.http.delete(`${this.BASE_URL}/booking/${id}`); 
+    return this.http.delete(`${this.BASE_URL}/booking/${id}`);
   }
 
   public getAllLessons() {
@@ -92,43 +92,46 @@ export class ApiService {
   }
 
   public downloadDoc(fileName: string) {
-    return this.http.get(`${this.BASE_URL}/download/${fileName}`, {
-      responseType: 'blob' as 'json',
-      observe: 'response'
-    }).pipe(
-      map(response => {
-        const headers = response.headers;
-        const contentDisposition = headers.get('content-disposition');
-        const fileSize = headers.get('content-length');
-        return {
-          blob: response.body,
-          contentDisposition: contentDisposition,
-          fileSize: fileSize
-        };
+    return this.http
+      .get(`${this.BASE_URL}/download/${fileName}`, {
+        responseType: 'blob' as 'json',
+        observe: 'response',
       })
-    );
+      .pipe(
+        map((response) => {
+          const headers = response.headers;
+          const contentDisposition = headers.get('content-disposition');
+          const fileSize = headers.get('content-length');
+          return {
+            blob: response.body,
+            contentDisposition: contentDisposition,
+            fileSize: fileSize,
+          };
+        })
+      );
   }
 
   public downloadSupplies(fileName: string) {
-    return this.http.get(`${this.BASE_URL}/supplies/${fileName}`, {
-      responseType: 'blob' as 'json',
-      observe: 'response'
-    }).pipe(
-      map(response => {
-        const headers = response.headers; 
-        const contentDisposition = headers.get('content-disposition');
-        const fileSize = headers.get('content-length');
-        return {
-          blob: response.body,
-          contentType: contentDisposition,
-          fileSize: fileSize
-        };
-        
+    return this.http
+      .get(`${this.BASE_URL}/supplies/${fileName}`, {
+        responseType: 'blob' as 'json',
+        observe: 'response',
       })
-    );
+      .pipe(
+        map((response) => {
+          const headers = response.headers;
+          const contentDisposition = headers.get('content-disposition');
+          const fileSize = headers.get('content-length');
+          return {
+            blob: response.body,
+            contentType: contentDisposition,
+            fileSize: fileSize,
+          };
+        })
+      );
   }
 
-  public deleteAvatar(dni: string){
+  public deleteAvatar(dni: string) {
     return this.http.delete(`${this.BASE_URL}/users/deleteAvatar/${dni}`);
   }
 }

@@ -5,7 +5,11 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="mybookings" href="/tabs/mybookings" [hidden]="this.user === null">
+    <ion-tab-button
+      tab="mybookings"
+      href="/tabs/mybookings"
+      [hidden]="this.user === null"
+    >
       <ion-icon aria-hidden="true" name="calendar"></ion-icon>
       <ion-label>Mis reservas</ion-label>
     </ion-tab-button>
@@ -15,10 +19,13 @@
       <ion-label>Login</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="profile" href="../profile" [hidden]="this.user === null">
+    <ion-tab-button
+      tab="profile"
+      href="../profile"
+      [hidden]="this.user === null"
+    >
       <ion-icon aria-hidden="true" name="person-circle"></ion-icon>
       <ion-label>Profile</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
-
 </ion-tabs>

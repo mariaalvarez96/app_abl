@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
-  validatePassword(password: string):boolean {
+  validatePassword(password: string): boolean {
     if (password.length < 6) {
       return false;
     }
@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
     return true;
   }
 
-  validatePhone(phone: string):boolean {
+  validatePhone(phone: string): boolean {
     if (phone.length < 9) {
       return false;
     }
@@ -67,7 +67,8 @@ export class SignUpComponent implements OnInit {
     if (!this.validatePassword(this.password)) {
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'La contraseña debe tener al menos 6 caracteres, contener letras, números y al menos un carácter especial.',
+        message:
+          'La contraseña debe tener al menos 6 caracteres, contener letras, números y al menos un carácter especial.',
         buttons: ['OK'],
       });
       await alert.present();
@@ -88,7 +89,7 @@ export class SignUpComponent implements OnInit {
       async (error) => {
         const alert = await this.alertController.create({
           header: 'Error',
-          message: error.error, 
+          message: error.error,
           buttons: ['OK'],
         });
         await alert.present();

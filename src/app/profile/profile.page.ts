@@ -12,7 +12,6 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
   constructor(
     private currentUserManager: CurrentUserManager,
     private router: Router,
@@ -67,17 +66,17 @@ export class ProfilePage implements OnInit {
     const reader = new FileReader();
     reader.onload = (e) => {
       const base64String = reader.result?.toString().split(',')[1];
-      this.api.updateAvatar(this.user.dni, base64String).subscribe(
-        (response: any) => {
-          this.user = response
+      this.api
+        .updateAvatar(this.user.dni, base64String)
+        .subscribe((response: any) => {
+          this.user = response;
           this.currentUserManager.saveCurrentUser(response);
-        }
-      );
+        });
     };
     reader.readAsDataURL(selectedFile);
   }
 
-  validatePassword(password: string):boolean {
+  validatePassword(password: string): boolean {
     const pattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=.?¿!¡]).{6,}$/;
     if (password.length < 6) {
       return false;
@@ -94,7 +93,6 @@ export class ProfilePage implements OnInit {
     return true;
   }
 
-
   cancel() {
     this.modal?.dismiss(null, 'cancel');
   }
@@ -107,7 +105,8 @@ export class ProfilePage implements OnInit {
     if (!this.validatePassword(this.repeatPassword)) {
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'La contraseña debe tener al menos 6 caracteres, contener letras, números y al menos un carácter especial.',
+        message:
+          'La contraseña debe tener al menos 6 caracteres, contener letras, números y al menos un carácter especial.',
         buttons: ['OK'],
       });
       await alert.present();
@@ -133,10 +132,8 @@ export class ProfilePage implements OnInit {
   }
 
   deleteAvatar() {
-    this.api.deleteAvatar(this.user.dni).subscribe(
-      (response: any) => {
-        this.user.avatar = null;
-      }
-    )
+    this.api.deleteAvatar(this.user.dni).subscribe((response: any) => {
+      this.user.avatar = null;
+    });
   }
 }
