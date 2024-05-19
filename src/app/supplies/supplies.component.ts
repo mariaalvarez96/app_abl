@@ -1,33 +1,82 @@
-import { Component} from '@angular/core';
-import { User } from '../entity/user';
-import { CurrentUserManager } from '../services/currentUserManager';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api';
 import { ToastController } from '@ionic/angular';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
 import { Capacitor } from '@capacitor/core';
+import { FileDocument } from '../entity/fileDocument';
 
 @Component({
   selector: 'app-supplies',
-  templateUrl: './supplies.component.html', 
+  templateUrl: './supplies.component.html',
   styleUrls: ['./supplies.component.scss'],
 })
-export class SuppliesComponent {
-
-  user: User|null = null;
-  selectedOption: string = '';
-  fileSize: number = 0;
+export class SuppliesComponent implements OnInit {
+  primaryDocuments: FileDocument[] = [];
+  secondaryDocuments: FileDocument[] = [];
+  bachDocuments: FileDocument[] = [];
+  masterDocuments: FileDocument[] = [];
 
   constructor(
-    private currentUserManager: CurrentUserManager,
-     private api: ApiService,
+    private api: ApiService,
     private toastController: ToastController
   ) {
-    this.user = this.currentUserManager.getCurrentUser();
+
+    this.primaryDocuments = [
+      new FileDocument('apuntes1primaria', 'Apuntes de repaso de 1º'),
+      new FileDocument('apuntes2primaria', 'Apuntes de repaso de 2º'),
+      new FileDocument('apuntes3primaria', 'Apuntes de repaso de 3º'),
+      new FileDocument('apuntes4primaria', 'Apuntes de repaso de 4º'),
+      new FileDocument('apuntes5primaria', 'Apuntes de repaso de 5º'),
+      new FileDocument('apuntes6primaria', 'Apuntes de repaso de 6º'),
+    ];
+
+    this.secondaryDocuments = [
+      new FileDocument('repaso_primero', 'Apuntes de repaso de 1º'),
+      new FileDocument('repaso_segundo', 'Apuntes de repaso de 2º'),
+      new FileDocument('repaso_tercero', 'Apuntes de repaso de 3º'),
+      new FileDocument('repaso_cuarto', 'Apuntes de repaso de 4º'),
+    ]
+
+    this.bachDocuments = [
+      new FileDocument('repaso_1bachiller', 'Apuntes de repaso de 1º'),
+      new FileDocument('repaso_2bachiller', 'Apuntes de repaso de 2º'),
+    ]
+
+    this.masterDocuments = [
+      new FileDocument('repaso_DAM', 'Apuntes de repaso de 1ºDAM'),
+      new FileDocument('repaso_DAW', 'Apuntes de repaso de 1ºDAW'),
+      new FileDocument('repaso_ASIR', 'Apuntes de repaso de 1ºASIR'),
+      new FileDocument('repaso_AYF', 'Apuntes de repaso de 1ºAYF'),
+    ]
+
   }
 
+  ngOnInit() {
+    this.primaryDocuments.map(async (doc) => {
+      doc.setSize(await this.getFileSize(doc.name));
+    });
+    this.secondaryDocuments.map(async (doc) => {
+      doc.setSize(await this.getFileSize(doc.name));
+    });
+    this.bachDocuments.map(async (doc) => {
+      doc.setSize(await this.getFileSize(doc.name));
+    });
+    this.masterDocuments.map(async (doc) => {
+      doc.setSize(await this.getFileSize(doc.name));
+    });
+  }
 
-  ionViewDidEnter() {
-    this.user = this.currentUserManager.getCurrentUser();
+  async getFileSize(fileName: string): Promise<number> {
+    return new Promise<number>((resolve, reject) => {
+      this.api.downloadDoc(fileName).then((response: any) => {
+        let fileSizeInMegabytes = this.bytesToMegabytes(response.fileSize);
+        resolve(fileSizeInMegabytes);
+      });
+    });
+  }
+
+  bytesToMegabytes(bytes: number): number {
+    return parseFloat((bytes / (1024 * 1024)).toFixed(2));
   }
 
   async checkPermissions(): Promise<boolean> {
@@ -35,19 +84,22 @@ export class SuppliesComponent {
       const permissionStatus = await Filesystem.requestPermissions();
       return permissionStatus.publicStorage === 'granted';
     } catch (error) {
-      console.error('Error al solicitar permisos:', error);
       return false;
     }
   }
 
-  async getFileName(filename: string, event: Event) {
-    event.preventDefault();
+  async getFileName(filename: string) {
     if (Capacitor.getPlatform() !== 'web') {
       const permissions = await this.checkPermissions();
       if (permissions) {
         this.downloadAndSaveFile(filename);
       } else {
-        alert('Permisos no concedidos');
+        let toast = this.toastController.create({
+          message: 'La aplicación no tiene permisos para descargar el archivo',
+          duration: 3600,
+          position: 'bottom',
+        });
+        (await toast).present();
       }
     } else {
       this.downloadAndOpenFileInBrowser(filename);
@@ -55,32 +107,27 @@ export class SuppliesComponent {
   }
 
   downloadAndOpenFileInBrowser(filename: string) {
-    this.api.downloadSupplies(filename).subscribe((response: any) => {
-      const file = new Blob([response], { type: 'application/pdf' });
-      this.fileSize = response.fileSize;
-      const blobURL = URL.createObjectURL(file);
+    this.api.downloadDoc(filename).then((response: any) => {
+      const blobURL = URL.createObjectURL(response.blob);
       const link = document.createElement('a');
       link.href = blobURL;
-      link.download = filename+'.pdf';
+      link.download = filename + '.pdf';
       link.click();
     });
   }
 
   async downloadAndSaveFile(filename: string) {
-    this.api.downloadSupplies(filename).subscribe(async (response: any) => {
-      let string = await response.text();
-      this.fileSize = response.fileSize;
+    this.api.downloadDoc(filename).then(async (response: any) => {
       const result = await Filesystem.writeFile({
         path: 'Download/' + filename + '.pdf',
-        data: string,
+        data: response.blob,
         directory: Directory.ExternalStorage,
         encoding: Encoding.UTF8,
       });
-
       let toast = this.toastController.create({
-        message: "Archivo descargado correctamente",
+        message: 'Archivo descargado correctamente',
         duration: 3600,
-        position: 'bottom'
+        position: 'bottom',
       });
       (await toast).present();
     });

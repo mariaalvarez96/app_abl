@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { Capacitor, CapacitorHttp, HttpOptions } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root',
@@ -91,7 +92,18 @@ export class ApiService {
     return this.http.get(`${this.BASE_URL}/students/${dni}`);
   }
 
-  public downloadDoc(fileName: string) {
+  public async downloadDoc(fileName: string) {
+    let httpOptions = {
+      url: `${this.BASE_URL}/download/${fileName}`,
+      method: 'GET',
+      responseType: 'blob',
+      observe: 'response',
+    } as HttpOptions;
+    let size: number = 0;
+    await CapacitorHttp.get(httpOptions).then( async (res) => {
+      size = parseFloat(res.headers['Content-Length']);
+    });
+
     return this.http
       .get(`${this.BASE_URL}/download/${fileName}`, {
         responseType: 'blob' as 'json',
@@ -101,34 +113,16 @@ export class ApiService {
         map((response) => {
           const headers = response.headers;
           const contentDisposition = headers.get('content-disposition');
-          const fileSize = headers.get('content-length');
+          if (Capacitor.getPlatform() === 'web') {
+            size = parseFloat(headers.get('content-length') ?? '0');
+          }
           return {
             blob: response.body,
             contentDisposition: contentDisposition,
-            fileSize: fileSize,
+            fileSize: size,
           };
         })
-      );
-  }
-
-  public downloadSupplies(fileName: string) {
-    return this.http
-      .get(`${this.BASE_URL}/supplies/${fileName}`, {
-        responseType: 'blob' as 'json',
-        observe: 'response',
-      })
-      .pipe(
-        map((response) => {
-          const headers = response.headers;
-          const contentDisposition = headers.get('content-disposition');
-          const fileSize = headers.get('content-length');
-          return {
-            blob: response.body,
-            contentType: contentDisposition,
-            fileSize: fileSize,
-          };
-        })
-      );
+    ).toPromise();
   }
 
   public deleteAvatar(dni: string) {

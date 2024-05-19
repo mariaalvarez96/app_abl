@@ -44,7 +44,7 @@ export class DocumentsComponent implements OnInit {
 
   async getFileSize(fileName: string): Promise<number> {
     return new Promise<number>((resolve, reject) => {
-      this.api.downloadDoc(fileName).subscribe((response: any) => {
+      this.api.downloadDoc(fileName).then((response: any) => {
         let fileSizeInMegabytes = this.bytesToMegabytes(response.fileSize);
         resolve(fileSizeInMegabytes);
       });
@@ -65,9 +65,8 @@ export class DocumentsComponent implements OnInit {
   }
 
   downloadAndOpenFileInBrowser(filename: string) {
-    this.api.downloadDoc(filename).subscribe((response: any) => {
-      const file = new Blob([response], { type: 'application/pdf' });
-      const blobURL = URL.createObjectURL(file);
+    this.api.downloadDoc(filename).then((response: any) => {
+      const blobURL = URL.createObjectURL(response.blob);
       const link = document.createElement('a');
       link.href = blobURL;
       link.download = filename + '.pdf';
@@ -76,11 +75,11 @@ export class DocumentsComponent implements OnInit {
   }
 
   async downloadAndSaveFile(filename: string) {
-    this.api.downloadDoc(filename).subscribe(async (response: any) => {
-      let string = await response.text();
-      const result = await Filesystem.writeFile({
+    this.api.downloadDoc(filename).then(async (response: any) => {
+      const data = await response.blob;
+      await Filesystem.writeFile({
         path: 'Download/' + filename + '.pdf',
-        data: string,
+        data: btoa(data),
         directory: Directory.ExternalStorage,
         encoding: Encoding.UTF8,
       });
@@ -90,11 +89,10 @@ export class DocumentsComponent implements OnInit {
         position: 'bottom',
       });
       (await toast).present();
-    });
+    }); 
   }
 
   async getFileName(filename: string) {
-    console.log(filename);
     if (Capacitor.getPlatform() !== 'web') {
       const permissions = await this.checkPermissions();
       if (permissions) {
