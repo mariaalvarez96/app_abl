@@ -118,9 +118,10 @@ export class SuppliesComponent implements OnInit {
 
   async downloadAndSaveFile(filename: string) {
     this.api.downloadDoc(filename).then(async (response: any) => {
-      const result = await Filesystem.writeFile({
+      const data = await response.blob;
+      await Filesystem.writeFile({
         path: 'Download/' + filename + '.pdf',
-        data: response.blob,
+        data: btoa(data),
         directory: Directory.ExternalStorage,
         encoding: Encoding.UTF8,
       });
@@ -130,6 +131,6 @@ export class SuppliesComponent implements OnInit {
         position: 'bottom',
       });
       (await toast).present();
-    });
+    }); 
   }
 }
