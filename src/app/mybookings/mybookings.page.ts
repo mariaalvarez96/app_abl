@@ -73,9 +73,6 @@ export class MybookingsPage implements OnInit {
         {
           text: 'No',
           role: 'cancel',
-          handler: () => {
-            console.log('Alerta canceleda');
-          },
         },
         {
           text: 'Sí',
